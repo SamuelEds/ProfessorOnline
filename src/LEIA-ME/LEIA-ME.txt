@@ -1,0 +1,51 @@
+﻿
+Atualização 11/02/2020
+
+Nome do banco de dados: profonline
+
+---------------------------------------------------------------------
+Tabela professores
+
+id *
+Nome *
+Email *
+Telefone
+Escola Pertencente *
+Disciplina *
+Senha *
+Confirmar Senha *
+
+---------------------------------------------------------------------
+
+Atualização 13/02/2020
+
+João Victor fez a interface da tela de cadastro de professor.
+
+Pedro programaou o botão de cadastrar na tela de cadastro do professor e Samuel
+programou o botão atualizar na tela de cadastro do professor. 
+
+Samuel programou a tela Login. 
+
+---------------------------------------------------------------------
+
+Atualização 16/02/2020
+
+Denis Braga fez a interface do Administrador, 3 JInternalFrame para 
+as telas de Gerenciar Boletim, Professores e alunos
+
+---------------------------------------------------------------------
+
+Atualização 16/02/2020
+
+João Victor fez a tela de SplashScreen com barra de carregamento. 
+
+---------------------------------------------------------------------
+
+Atualização 18/02/2020
+
+Houve alguns bug na tela SplashScreen, Pedro consertou.
+
+Samuel fez a tela de cadastro de dados dos alunos em JInternalFrame
+e modificou o banco de dados
+
+---------------------------------------------------------------------
