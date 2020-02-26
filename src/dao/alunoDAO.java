@@ -27,7 +27,7 @@ public class alunoDAO {
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null,"Dados Salvos com Sucesso!!");
         } catch (SQLException ex) {
-            System.out.println("Erro: "+ex);
+            JOptionPane.showMessageDialog(null,"Verifique se você duplicou a matrícula, ou reveja os dados para cadastrar","Um erro aconteceu durante o cadastro",JOptionPane.ERROR_MESSAGE);
         }
     }
     

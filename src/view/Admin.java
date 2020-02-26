@@ -42,6 +42,7 @@ public class Admin extends javax.swing.JFrame {
         GProf = new javax.swing.JButton();
         janela = new javax.swing.JDesktopPane();
         jButton1 = new javax.swing.JButton();
+        voltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -112,6 +113,16 @@ public class Admin extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(20, 480, 300, 90);
 
+        voltar.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        voltar.setText("VOLTAR");
+        voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(voltar);
+        voltar.setBounds(10, 10, 140, 50);
+
         setSize(new java.awt.Dimension(1261, 675));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -139,6 +150,11 @@ public class Admin extends javax.swing.JFrame {
         janela.add(gf);
         gf.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarActionPerformed
+        new Login().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_voltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,5 +198,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JLabel Titulo;
     private javax.swing.JButton jButton1;
     private javax.swing.JDesktopPane janela;
+    private javax.swing.JButton voltar;
     // End of variables declaration//GEN-END:variables
 }

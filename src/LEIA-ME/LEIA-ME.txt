@@ -57,3 +57,13 @@ Pedro adicionou a funcionalidade de mostrar os dados do aluno na tela:
 TelaProfessor
 
 ---------------------------------------------------------------------
+
+Atualização 26/02/2020
+
+Samuel modificou a tela de gerenciamento de professores adicionando
+os botões Pesquisar, Deletar e Mostrar Tudo programando também 
+suas funções. E também consertou alguns bugs que a tela de cadastro 
+de alunos apresentava.
+
+Samuel modificou a interface da TelaProfessor colocando e programando
+dados dos alunos

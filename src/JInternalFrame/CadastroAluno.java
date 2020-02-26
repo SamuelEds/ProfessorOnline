@@ -56,6 +56,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         atualizar = new javax.swing.JButton();
         pesquisar = new javax.swing.JButton();
         deletar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setClosable(true);
         getContentPane().setLayout(null);
@@ -63,10 +64,10 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("NOME:");
+        jLabel1.setText("NOME: *");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("MATRÍCULA:");
+        jLabel2.setText("MATRÍCULA: *");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Email:");
@@ -75,40 +76,40 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         jLabel4.setText("TELEFONE:");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setText("ESCOLA:");
+        jLabel5.setText("ESCOLA: *");
 
         serie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Primeiro Ano do Ensino Médio", "Segundo Ano do Ensino Médio", "Terceiro Ano do Ensino Médio" }));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setText("SÉRIE:");
+        jLabel6.setText("SÉRIE: *");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2)
                         .addGap(15, 15, 15)
                         .addComponent(matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(79, 79, 79)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(email)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(telefone))
+                        .addComponent(telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(91, 91, 91)
@@ -142,7 +143,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                     .addComponent(serie, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(escola, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -151,7 +152,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         jLabel7.setText("GERENCIAMENTO DE DADOS DO ALUNO");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(270, 20, 500, 29);
+        jLabel7.setBounds(210, 10, 500, 29);
 
         salvar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         salvar.setText("SALVAR DADOS");
@@ -192,6 +193,11 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         });
         getContentPane().add(deletar);
         deletar.setBounds(680, 400, 190, 50);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel8.setText("Campos Obrigatórios *");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(650, 32, 210, 30);
 
         setBounds(0, 0, 894, 504);
     }// </editor-fold>//GEN-END:initComponents
@@ -240,17 +246,22 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
             ResultSet rs = null;
             
             int matri = Integer.parseInt(JOptionPane.showInputDialog("Digite a matrícula para Busca: "));
-            stmt = con.prepareStatement("SELECT * FROM alunos WHERE matricula like '%"+matri+"%'");
+            stmt = con.prepareStatement("SELECT * FROM alunos WHERE matricula = '"+matri+"'");
             rs = stmt.executeQuery();
             
-            while(rs.next()){
-                matricula.setText(String.valueOf(rs.getInt("matricula")));
-                nome.setText(rs.getString("nome"));
-                email.setText(rs.getString("email"));
-                telefone.setText(rs.getString("telefone"));
-                serie.setSelectedItem(rs.getString("serie"));
-                escola.setText(rs.getString("escola"));
+            if(rs.next()){
+                
+                    matricula.setText(String.valueOf(rs.getInt("matricula")));
+                    nome.setText(rs.getString("nome"));
+                    email.setText(rs.getString("email"));
+                    telefone.setText(rs.getString("telefone"));
+                    serie.setSelectedItem(rs.getString("serie"));
+                    escola.setText(rs.getString("escola"));
+                
+            }else{
+                JOptionPane.showMessageDialog(null,"É preciso da matrícula para confirmação!!","Aviso",JOptionPane.ERROR_MESSAGE);
             }
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"É preciso da matrícula para confirmação!!","Aviso",JOptionPane.ERROR_MESSAGE);
         }
@@ -277,6 +288,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField matricula;
     private javax.swing.JTextField nome;

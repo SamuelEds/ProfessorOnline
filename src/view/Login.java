@@ -133,13 +133,15 @@ public class Login extends javax.swing.JFrame {
             rs = stmt.executeQuery();
             
             while(rs.next()){
+                p.setDisciplina(rs.getString("disciplina"));
                 p.setEmail(rs.getString("email"));
                 p.setSenha(rs.getString("senha"));
             }
             
-            if(email.getText().equals("") || String.valueOf(senha.getText()).equals("")){
+            if(email.getText().equals("") || String.valueOf(senha.getPassword()).equals("")){
                 JOptionPane.showMessageDialog(null,"Preencha os campos");
             }else if(email.getText().equals(p.getEmail()) && String.valueOf(senha.getPassword()).equals(p.getSenha())){
+                
                 new TelaProfessor().setVisible(true);
                 dispose();
             }else if(email.getText().equals("adm") && String.valueOf(senha.getPassword()).equals("123")){

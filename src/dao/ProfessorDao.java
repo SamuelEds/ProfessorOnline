@@ -91,4 +91,17 @@ public class ProfessorDao {
         return false;
     }
     
+    public void deletar(String email){
+        Connection con = conexao.getConnection();
+        PreparedStatement stmt = null;
+        
+        try {
+            stmt = con.prepareStatement("DELETE FROM professores WHERE email = '"+email+"'");
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Professor deletado com Sucesso!!");
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfessorDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }

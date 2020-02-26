@@ -6,12 +6,14 @@
 package JInternalFrame;
 
 import connection.conexao;
+import dao.ProfessorDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -62,6 +64,9 @@ public class GerProf extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         professores = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        pesquisa = new javax.swing.JButton();
+        deletar = new javax.swing.JButton();
+        mostrar = new javax.swing.JButton();
 
         setClosable(true);
         setResizable(true);
@@ -87,36 +92,121 @@ public class GerProf extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         jLabel1.setText("VISUALIZAR PROFESSORES CADASTRADOS");
 
+        pesquisa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        pesquisa.setText("PESQUISAR");
+        pesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisaActionPerformed(evt);
+            }
+        });
+
+        deletar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        deletar.setText("DELETAR");
+        deletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletarActionPerformed(evt);
+            }
+        });
+
+        mostrar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        mostrar.setText("MOSTRAR TUDO");
+        mostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 859, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(jLabel1)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(160, 160, 160)
+                .addComponent(jLabel1)
+                .addContainerGap(217, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(mostrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
+                .addComponent(deletar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(118, 118, 118))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deletar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void pesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisaActionPerformed
+        Connection con = conexao.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try {
+            String email = JOptionPane.showInputDialog("Digite o Email para pesquisa");
+            stmt = con.prepareStatement("SELECT * FROM professores WHERE email like '%"+email+"%'");
+            rs = stmt.executeQuery();
+            
+            DefaultTableModel table = (DefaultTableModel) professores.getModel();
+            table.setNumRows(0);
+            while(rs.next()){
+               
+                Object[] ob = {rs.getString("nome"), rs.getString("email"), rs.getString("telefone"),rs.getString("escola_per"), rs.getString("disciplina"), rs.getString("senha")};
+                table.addRow(ob);
+                
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Professor não encontrado!!","Aviso",JOptionPane.ERROR_MESSAGE);
+        }finally{
+            conexao.closeConnection(con, stmt, rs);
+        }
+    }//GEN-LAST:event_pesquisaActionPerformed
+
+    private void deletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarActionPerformed
+        ProfessorDao pd = new ProfessorDao();
+        
+        if(professores.getSelectedRow() != -1){
+            DefaultTableModel table = (DefaultTableModel) professores.getModel();
+            
+            String email = String.valueOf(professores.getValueAt(professores.getSelectedRow(), 1));
+            pd.deletar(email);
+            table.removeRow(professores.getSelectedRow());
+        }else{
+            JOptionPane.showMessageDialog(null,"Selecione uma linha da tabela para exclusão","Aviso",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_deletarActionPerformed
+
+    private void mostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarActionPerformed
+        DefaultTableModel table = (DefaultTableModel) professores.getModel();
+        table.setNumRows(0);
+        puxar();
+    }//GEN-LAST:event_mostrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton deletar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton mostrar;
+    private javax.swing.JButton pesquisa;
     private javax.swing.JTable professores;
     // End of variables declaration//GEN-END:variables
 }
