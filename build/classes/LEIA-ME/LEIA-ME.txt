@@ -45,7 +45,15 @@ Atualização 18/02/2020
 
 Houve alguns bug na tela SplashScreen, Pedro consertou.
 
-Samuel fez a tela de cadastro de dados do alunos em JInternalFrame
+Samuel fez a tela de cadastro de dados dos alunos em JInternalFrame
 e modificou o banco de dados
+
+---------------------------------------------------------------------
+
+
+Atualização 24/02/2020
+
+Pedro adicionou a funcionalidade de mostrar os dados do aluno na tela:
+TelaProfessor
 
 ---------------------------------------------------------------------
