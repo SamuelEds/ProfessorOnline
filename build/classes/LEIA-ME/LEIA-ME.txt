@@ -66,4 +66,8 @@ suas funções. E também consertou alguns bugs que a tela de cadastro
 de alunos apresentava.
 
 Samuel modificou a interface da TelaProfessor colocando e programando
-dados dos alunos
+dados dos alunos.
+
+Samuel modificou a TelaProfessor adicionando o campo Cadastro de Boletim
+
+---------------------------------------------------------------------

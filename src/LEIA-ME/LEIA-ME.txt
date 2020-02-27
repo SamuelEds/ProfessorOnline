@@ -71,3 +71,11 @@ dados dos alunos.
 Samuel modificou a TelaProfessor adicionando o campo Cadastro de Boletim
 
 ---------------------------------------------------------------------
+
+Atualização 27/02/2020
+
+Samuel programou o sistema para cálculo automático do boletim
+na TelaProfessor, programou a tabela na tela GerBoletim em 
+JInternalFrame e modificou o banco de dados.
+
+---------------------------------------------------------------------

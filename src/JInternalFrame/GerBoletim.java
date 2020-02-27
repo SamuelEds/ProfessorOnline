@@ -5,6 +5,19 @@
  */
 package JInternalFrame;
 
+import bean.boletimBEAN;
+import connection.conexao;
+import dao.boletimDAO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import view.TelaProfessor;
+
 /**
  *
  * @author Aluno
@@ -16,6 +29,29 @@ public class GerBoletim extends javax.swing.JInternalFrame {
      */
     public GerBoletim() {
         initComponents();
+        
+        puxarBoletim();
+    }
+    
+    public void puxarBoletim(){
+        Connection con = conexao.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try {
+            stmt = con.prepareStatement("SELECT * FROM boletim");
+            rs = stmt.executeQuery();
+            
+            DefaultTableModel table = (DefaultTableModel) boletim.getModel();
+            table.setNumRows(0);
+            while(rs.next()){
+                Object[] l = {rs.getInt("id"),rs.getString("nome"), rs.getString("disciplina"), rs.getString("serie"), rs.getDouble("prova_parcial"), rs.getDouble("prova_bimestral"), rs.getDouble("media"), rs.getString("resultado")};
+                table.addRow(l);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaProfessor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -27,51 +63,98 @@ public class GerBoletim extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Boletim = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        boletim = new javax.swing.JTable();
+        deletar = new javax.swing.JButton();
 
         setClosable(true);
         setResizable(true);
 
-        Boletim.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 36)); // NOI18N
+        jLabel1.setText("VISUALIZAR BOLETIM");
+
+        boletim.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "Disciplina", "Bim 1", "Bim 2", "Bim 3", "Bim 4", "Média", "Resultado"
+                "ID", "Nome", "Disciplina", "Serie", "Prova Parcial", "Prova Bimestral", "Média", "Resultado"
             }
-        ));
-        jScrollPane1.setViewportView(Boletim);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 36)); // NOI18N
-        jLabel1.setText("VISUALIZAR BOLETIM");
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        boletim.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(boletim);
+
+        deletar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        deletar.setText("DELETAR DADOS");
+        deletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1025, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(288, 288, 288)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(288, 288, 288)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(deletar, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(154, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 383, Short.MAX_VALUE)
+                .addComponent(deletar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(60, 60, 60)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(93, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void deletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarActionPerformed
+        boletimBEAN ab = new boletimBEAN();
+        boletimDAO ad = new boletimDAO();
+        
+        if(boletim.getSelectedRow() != -1){
+            DefaultTableModel table = (DefaultTableModel) boletim.getModel();
+            
+            int id = Integer.parseInt(String.valueOf(boletim.getValueAt(boletim.getSelectedRow(), 0)));
+            ad.deletar(id);
+            table.removeRow(boletim.getSelectedRow());
+            
+        }else{
+            JOptionPane.showMessageDialog(null,"Selecione uma linha da tabela para exclusão","Aviso",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_deletarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Boletim;
+    private javax.swing.JTable boletim;
+    private javax.swing.JButton deletar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

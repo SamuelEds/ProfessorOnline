@@ -101,7 +101,7 @@
     <Container class="javax.swing.JDesktopPane" name="janela">
       <Properties>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[908, 504]"/>
+          <Dimension value="[900, 504]"/>
         </Property>
       </Properties>
       <Constraints>

@@ -87,7 +87,7 @@ public class Admin extends javax.swing.JFrame {
         getContentPane().add(GProf);
         GProf.setBounds(20, 160, 303, 80);
 
-        janela.setPreferredSize(new java.awt.Dimension(908, 504));
+        janela.setPreferredSize(new java.awt.Dimension(900, 504));
 
         javax.swing.GroupLayout janelaLayout = new javax.swing.GroupLayout(janela);
         janela.setLayout(janelaLayout);
