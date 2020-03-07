@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 
@@ -28,9 +29,11 @@ public class conexao {
             Class.forName(DRIVER); //Classe para ser usado
             return DriverManager.getConnection(URL, USER, PASS); //Acesso ao banco
         } catch ( SQLException ex) { //Caso a conexão falhe
+            JOptionPane.showMessageDialog(null,"ERRO NA CONEXÃO!","AVISO!!",JOptionPane.ERROR_MESSAGE);
             throw new RuntimeException("Erro na Classe",ex);
         }catch(ClassNotFoundException e){
-            throw new RuntimeException("Erro na Classe",e);
+            JOptionPane.showMessageDialog(null,"ERRO NA CONEXÃO! ");
+            throw new RuntimeException("ERRO NA CONEXÃO",e);
         }
     }
     

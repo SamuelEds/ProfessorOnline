@@ -1,6 +1,7 @@
 package bean;
 
 public class boletimBEAN {
+    int    id;
     String nome;
     String disciplina;
     String serie;
@@ -8,6 +9,14 @@ public class boletimBEAN {
     double provaBim;
     double media;
     String resultado;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;

@@ -104,6 +104,7 @@ public class Admin extends javax.swing.JFrame {
         janela.setBounds(340, 80, 900, 504);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/VizAluno.png"))); // NOI18N
         jButton1.setText("Visualizar Alunos ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
