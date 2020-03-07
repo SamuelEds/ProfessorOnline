@@ -72,7 +72,16 @@ public class GerAluno extends javax.swing.JInternalFrame {
             new String [] {
                 "Matricula", "Nome", "Email", "Telefone", "Série", "Escola"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        alunos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(alunos);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N

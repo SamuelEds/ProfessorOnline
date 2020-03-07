@@ -79,3 +79,11 @@ na TelaProfessor, programou a tabela na tela GerBoletim em
 JInternalFrame e modificou o banco de dados.
 
 ---------------------------------------------------------------------
+
+Atualização 06/03/2020
+
+Denis braga programou a entrada de Gabarito da Prova Bimestral na 
+TelaProfessores e consertou um bug presente. Samuel Edson programou
+os botões Pesquisar e Mostrar Tudo da tela GerProf (JInternalFrame)
+
+---------------------------------------------------------------------
