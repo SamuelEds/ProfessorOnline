@@ -202,11 +202,11 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addComponent(deletar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -223,9 +223,9 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(-10, 370, 910, 110);
+        jPanel2.setBounds(-10, 370, 950, 110);
 
-        setBounds(0, 0, 913, 531);
+        setBounds(0, 0, 950, 535);
     }// </editor-fold>//GEN-END:initComponents
 
     private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
