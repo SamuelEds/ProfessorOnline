@@ -52,11 +52,12 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         escola = new javax.swing.JTextField();
         telefone = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         salvar = new javax.swing.JButton();
         atualizar = new javax.swing.JButton();
         pesquisar = new javax.swing.JButton();
         deletar = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
 
         setClosable(true);
         getContentPane().setLayout(null);
@@ -88,39 +89,36 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(serie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(escola)
+                .addGap(142, 142, 142))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addGap(15, 15, 15)
-                        .addComponent(matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
+                        .addGap(56, 56, 56)
                         .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
                         .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(jLabel6)
-                .addGap(28, 28, 28)
-                .addComponent(serie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(escola)
-                .addGap(55, 55, 55))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,6 +152,14 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(210, 10, 500, 29);
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel8.setText("Campos Obrigatórios *");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(650, 32, 210, 30);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+        salvar.setBackground(new java.awt.Color(204, 204, 204));
         salvar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         salvar.setText("SALVAR DADOS");
         salvar.addActionListener(new java.awt.event.ActionListener() {
@@ -161,9 +167,8 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                 salvarActionPerformed(evt);
             }
         });
-        getContentPane().add(salvar);
-        salvar.setBounds(20, 400, 190, 50);
 
+        atualizar.setBackground(new java.awt.Color(204, 204, 204));
         atualizar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         atualizar.setText("ATUALIZAR DADOS");
         atualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -171,9 +176,8 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                 atualizarActionPerformed(evt);
             }
         });
-        getContentPane().add(atualizar);
-        atualizar.setBounds(230, 400, 210, 50);
 
+        pesquisar.setBackground(new java.awt.Color(204, 204, 204));
         pesquisar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         pesquisar.setText("PESQUISAR DADOS");
         pesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -181,9 +185,8 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                 pesquisarActionPerformed(evt);
             }
         });
-        getContentPane().add(pesquisar);
-        pesquisar.setBounds(460, 400, 210, 50);
 
+        deletar.setBackground(new java.awt.Color(204, 204, 204));
         deletar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         deletar.setText("DELETAR DADOS");
         deletar.addActionListener(new java.awt.event.ActionListener() {
@@ -191,15 +194,38 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                 deletarActionPerformed(evt);
             }
         });
-        getContentPane().add(deletar);
-        deletar.setBounds(680, 400, 190, 50);
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("Campos Obrigatórios *");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(650, 32, 210, 30);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(deletar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(31, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deletar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
+        );
 
-        setBounds(0, 0, 894, 504);
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(-10, 370, 910, 110);
+
+        setBounds(0, 0, 913, 531);
     }// </editor-fold>//GEN-END:initComponents
 
     private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
@@ -290,6 +316,7 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField matricula;
     private javax.swing.JTextField nome;
     private javax.swing.JButton pesquisar;

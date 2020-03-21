@@ -88,3 +88,9 @@ os botões Pesquisar e Mostrar Tudo da tela GerProf (JInternalFrame) e
 testando projeto.
 
 ---------------------------------------------------------------------
+
+Atualização 21/03/2020
+
+Samuel Edson fez o design da tela de ADM e programou data e hora.
+
+---------------------------------------------------------------------
