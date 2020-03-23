@@ -143,10 +143,10 @@ public class CadastroProfessor extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(escola_pertencente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(disciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(disciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -154,7 +154,7 @@ public class CadastroProfessor extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmar_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -190,63 +190,96 @@ public class CadastroProfessor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      if(email.getText().equals("") 
-      || String.valueOf(senha.getPassword()).equals("")
-      || nome.getText().equals("")
-      || String.valueOf(disciplina.getSelectedItem()).equals("")
-      || escola_pertencente.getText().equals("")
-      || String.valueOf(confirmar_senha.getPassword()).equals("")        
-              
-        )
-        {
-            JOptionPane.showMessageDialog(null,"Preencha todos os campos");
-        }else if(!(String.valueOf(confirmar_senha.getPassword()).equals(String.valueOf(senha.getPassword())))){
-            JOptionPane.showMessageDialog(null,"Campos não Coincidem");
-        }else{
-            
-        ProfessorBean pb = new ProfessorBean();
-        ProfessorDao  pd = new ProfessorDao();
         
-        pb.setNome(nome.getText());
-        pb.setEmail(email.getText());
-        pb.setSenha(String.valueOf(senha.getPassword()));
-        pb.setTelefone(telefone.getText());
-        pb.setEscola_pertencente(escola_pertencente.getText());
-        pb.setDisciplina(String.valueOf(disciplina.getSelectedItem()));
-       
-        pd.create(pb);
+        //Validar Email
+        int v = 0;
+        
+        for(int i = 0; i < email.getText().length();i++){
+            if(email.getText().charAt(i) == '@' && email.getText().endsWith("@gmail.com")){
+                v = v + 1;
+            }
+        }
+        
+        
+        if(v == 1){
+            
+        
+            if(email.getText().equals("") 
+                || String.valueOf(senha.getPassword()).equals("")
+                || nome.getText().equals("")
+                || String.valueOf(disciplina.getSelectedItem()).equals("")
+                || escola_pertencente.getText().equals("")
+                || String.valueOf(confirmar_senha.getPassword()).equals("")
+            )
+            {
+                JOptionPane.showMessageDialog(null,"Preencha todos os campos");
+            }else if(!(String.valueOf(confirmar_senha.getPassword()).equals(String.valueOf(senha.getPassword())))){
+                JOptionPane.showMessageDialog(null,"Campos não Coincidem","AVISO",JOptionPane.ERROR_MESSAGE);
+            }else{
+
+                ProfessorBean pb = new ProfessorBean();
+                ProfessorDao  pd = new ProfessorDao();
+
+                pb.setNome(nome.getText());
+                pb.setEmail(email.getText());
+                pb.setSenha(String.valueOf(senha.getPassword()));
+                pb.setTelefone(telefone.getText());
+                pb.setEscola_pertencente(escola_pertencente.getText());
+                pb.setDisciplina(String.valueOf(disciplina.getSelectedItem()));
+
+                pd.create(pb);
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(null,"Email Inválido","AVISO",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         
-        if(email.getText().equals("") 
-      || String.valueOf(senha.getPassword()).equals("")
-      || nome.getText().equals("")
-      || String.valueOf(disciplina.getSelectedItem()).equals("")
-      || escola_pertencente.getText().equals("")
-      || String.valueOf(confirmar_senha.getPassword()).equals("")        
-              
-        )
-        {
-            JOptionPane.showMessageDialog(null,"Preencha todos os campos");
-        }else if(!(String.valueOf(confirmar_senha.getPassword()).equals(String.valueOf(senha.getPassword())))){
-            JOptionPane.showMessageDialog(null,"Campos não Coincidem");
+        //Validar Email
+        int v = 0;
+        
+        for(int i = 0; i < email.getText().length();i++){
+            if(email.getText().charAt(i) == '@' && email.getText().endsWith("@gmail.com")){
+                v = v + 1;
+            }
+        }
+        
+        if(v == 1){
+        
+            if(email.getText().equals("") 
+                    
+                || String.valueOf(senha.getPassword()).equals("")
+                || nome.getText().equals("")
+                || String.valueOf(disciplina.getSelectedItem()).equals("")
+                || escola_pertencente.getText().equals("")
+                || String.valueOf(confirmar_senha.getPassword()).equals("")        
+                    
+            )
+            {
+                JOptionPane.showMessageDialog(null,"Preencha todos os campos");
+            }else if(!(String.valueOf(confirmar_senha.getPassword()).equals(String.valueOf(senha.getPassword())))){
+                JOptionPane.showMessageDialog(null,"Campos não Coincidem");
+            }else{
+
+                ProfessorBean pb = new ProfessorBean();
+                ProfessorDao  pd = new ProfessorDao();
+
+                String email = JOptionPane.showInputDialog("Digite seu antigo Email: ");
+
+                pb.setNome(nome.getText());
+                pb.setEmail(this.email.getText());
+                pb.setSenha(String.valueOf(senha.getPassword()));
+                pb.setTelefone(telefone.getText());
+                pb.setEscola_pertencente(escola_pertencente.getText());
+                pb.setDisciplina(String.valueOf(disciplina.getSelectedItem()));
+
+                pd.atualizar(pb,email);
+            }
+        
         }else{
-            
-        ProfessorBean pb = new ProfessorBean();
-        ProfessorDao  pd = new ProfessorDao();
-        
-        String email = JOptionPane.showInputDialog("Digite seu antigo Email: ");
-        
-        pb.setNome(nome.getText());
-        pb.setEmail(this.email.getText());
-        pb.setSenha(String.valueOf(senha.getPassword()));
-        pb.setTelefone(telefone.getText());
-        pb.setEscola_pertencente(escola_pertencente.getText());
-        pb.setDisciplina(String.valueOf(disciplina.getSelectedItem()));
-       
-        pd.atualizar(pb,email);
+            JOptionPane.showMessageDialog(null,"Email Inválido","AVISO",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_editarActionPerformed
 

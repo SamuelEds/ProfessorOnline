@@ -52,23 +52,30 @@ public class ProfessorDao {
         Connection con = conexao.getConnection();
         PreparedStatement stmt = null;
         
-        try {
-            stmt = con.prepareStatement("update professores set nome = ?, email = ?, telefone = ?,escola_per = ?, disciplina = ?, senha = ? where email = ?");
-            stmt.setString(1, p.getNome());
-            stmt.setString(2, p.getEmail());
-            stmt.setString(3, p.getTelefone());
-            stmt.setString(4, p.getEscola_pertencente());
-            stmt.setString(5, p.getDisciplina());
-            stmt.setString(6, p.getSenha());
-            stmt.setString(7, email);
+        if(verificar(email)){
             
-            stmt.executeUpdate();//Executar o comando
-            
-            JOptionPane.showMessageDialog(null,"Atualizado com Sucesso!");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Erro ao Atualizar: "+ex);
-        }finally{
-            conexao.closeConnection(con, stmt);
+        
+        
+            try {
+                stmt = con.prepareStatement("update professores set nome = ?, email = ?, telefone = ?,escola_per = ?, disciplina = ?, senha = ? where email = '"+email+"'");
+                stmt.setString(1, p.getNome());
+                stmt.setString(2, p.getEmail());
+                stmt.setString(3, p.getTelefone());
+                stmt.setString(4, p.getEscola_pertencente());
+                stmt.setString(5, p.getDisciplina());
+                stmt.setString(6, p.getSenha());
+
+                stmt.executeUpdate();//Executar o comando
+
+                JOptionPane.showMessageDialog(null,"Atualizado com Sucesso!");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"Erro ao Atualizar: "+ex);
+            }finally{
+                conexao.closeConnection(con, stmt);
+            }
+        
+        }else{
+            JOptionPane.showMessageDialog(null,"Usuário não existe ou foi deletado","AVISO",JOptionPane.ERROR_MESSAGE);
         }
     }
     
