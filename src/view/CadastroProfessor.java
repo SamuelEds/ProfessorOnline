@@ -70,7 +70,7 @@ public class CadastroProfessor extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(240, 460, 220, 60);
+        jButton1.setBounds(210, 460, 220, 60);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
@@ -168,7 +168,7 @@ public class CadastroProfessor extends javax.swing.JFrame {
             }
         });
         getContentPane().add(editar);
-        editar.setBounds(540, 460, 200, 60);
+        editar.setBounds(570, 460, 200, 60);
 
         jButton2.setFont(new java.awt.Font("Yu Gothic", 1, 18)); // NOI18N
         jButton2.setText("VOLTAR");
@@ -228,6 +228,14 @@ public class CadastroProfessor extends javax.swing.JFrame {
                 pb.setDisciplina(String.valueOf(disciplina.getSelectedItem()));
 
                 pd.create(pb);
+                
+                nome.setText("");
+                email.setText("");
+                telefone.setText("");
+                escola_pertencente.setText("");
+                disciplina.setSelectedIndex(0);
+                senha.setText("");
+                confirmar_senha.setText("");
             }
             
         }else{
@@ -274,8 +282,16 @@ public class CadastroProfessor extends javax.swing.JFrame {
                 pb.setTelefone(telefone.getText());
                 pb.setEscola_pertencente(escola_pertencente.getText());
                 pb.setDisciplina(String.valueOf(disciplina.getSelectedItem()));
+                pb.setSenha(String.valueOf(senha.getPassword()));
 
                 pd.atualizar(pb,email);
+                
+                nome.setText(pb.getNome());
+                this.email.setText(pb.getEmail());
+                senha.setText(pb.getSenha());
+                telefone.setText(pb.getTelefone());
+                escola_pertencente.setText(pb.getEscola_pertencente());
+                senha.setText(pb.getSenha());
             }
         
         }else{
