@@ -6,6 +6,7 @@
 package JInternalFrame;
 
 import bean.alunoBEAN;
+import view.Admin;
 import connection.conexao;
 import dao.alunoDAO;
 import java.sql.Connection;
@@ -38,126 +39,73 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         matricula = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         nome = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         serie = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
         escola = new javax.swing.JTextField();
         telefone = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         salvar = new javax.swing.JButton();
-        atualizar = new javax.swing.JButton();
-        pesquisar = new javax.swing.JButton();
         deletar = new javax.swing.JButton();
+        pesquisar = new javax.swing.JButton();
+        atualizar = new javax.swing.JButton();
 
         setClosable(true);
         getContentPane().setLayout(null);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        matricula.setBorder(null);
+        getContentPane().add(matricula);
+        matricula.setBounds(190, 510, 120, 15);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("NOME: *");
+        nome.setBorder(null);
+        nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nome);
+        nome.setBounds(190, 290, 390, 22);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("MATRÍCULA: *");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Email:");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setText("TELEFONE:");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setText("ESCOLA: *");
+        email.setBorder(null);
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
+        getContentPane().add(email);
+        email.setBounds(190, 220, 390, 22);
 
         serie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Primeiro Ano do Ensino Médio", "Segundo Ano do Ensino Médio", "Terceiro Ano do Ensino Médio" }));
+        serie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                serieActionPerformed(evt);
+            }
+        });
+        getContentPane().add(serie);
+        serie.setBounds(380, 510, 220, 24);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setText("SÉRIE: *");
+        escola.setBorder(null);
+        getContentPane().add(escola);
+        escola.setBounds(190, 360, 380, 15);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(serie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(escola)
-                .addGap(142, 142, 142))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(serie, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(escola, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
+        telefone.setBorder(null);
+        getContentPane().add(telefone);
+        telefone.setBounds(190, 436, 390, 20);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 60, 870, 290);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/DesingAluno.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 660, 760);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
-        jLabel7.setText("GERENCIAMENTO DE DADOS DO ALUNO");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(210, 10, 500, 29);
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("Campos Obrigatórios *");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(650, 32, 210, 30);
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(19, 175, 70, 50);
 
         salvar.setBackground(new java.awt.Color(204, 204, 204));
         salvar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -167,24 +115,8 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                 salvarActionPerformed(evt);
             }
         });
-
-        atualizar.setBackground(new java.awt.Color(204, 204, 204));
-        atualizar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        atualizar.setText("ATUALIZAR DADOS");
-        atualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                atualizarActionPerformed(evt);
-            }
-        });
-
-        pesquisar.setBackground(new java.awt.Color(204, 204, 204));
-        pesquisar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        pesquisar.setText("PESQUISAR DADOS");
-        pesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisarActionPerformed(evt);
-            }
-        });
+        getContentPane().add(salvar);
+        salvar.setBounds(10, 580, 150, 50);
 
         deletar.setBackground(new java.awt.Color(204, 204, 204));
         deletar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -194,74 +126,98 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
                 deletarActionPerformed(evt);
             }
         });
+        getContentPane().add(deletar);
+        deletar.setBounds(500, 580, 150, 50);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(deletar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deletar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
-        );
+        pesquisar.setBackground(new java.awt.Color(204, 204, 204));
+        pesquisar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        pesquisar.setText("PESQUISAR DADOS");
+        pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(pesquisar);
+        pesquisar.setBounds(330, 580, 150, 50);
 
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(-10, 370, 950, 110);
+        atualizar.setBackground(new java.awt.Color(204, 204, 204));
+        atualizar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        atualizar.setText("ATUALIZAR DADOS");
+        atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atualizarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(atualizar);
+        atualizar.setBounds(170, 580, 150, 50);
 
-        setBounds(0, 0, 950, 535);
+        setBounds(0, 0, 670, 711);
     }// </editor-fold>//GEN-END:initComponents
 
     private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
         alunoBEAN ab = new alunoBEAN();
         alunoDAO ad = new alunoDAO();
-        
-        if(matricula.getText().equals("") || nome.getText().equals("") || escola.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Preencha os campos obrigatórios","AVISO",JOptionPane.ERROR_MESSAGE);
-        }else{
-            ab.setMatricula(Integer.parseInt(matricula.getText()));
-            ab.setNome(nome.getText());
-            ab.setEmail(email.getText());
-            ab.setSerie(String.valueOf(serie.getSelectedItem()));
-            ab.setEscola(escola.getText());
-            ab.setTelefone(telefone.getText());
-            
-            ad.salvar(ab);
+
+        //Validar Email
+        int v = 0;
+
+        for (int i = 0; i < email.getText().length(); i++) {
+            if (email.getText().charAt(i) == '@' && email.getText().endsWith("@gmail.com")) {
+                v = v + 1;
+            }
+        }
+
+        if (matricula.getText().equals("") || nome.getText().equals("") || escola.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios", "AVISO", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            if (v == 1) {
+                ab.setMatricula(Integer.parseInt(matricula.getText()));
+                ab.setNome(nome.getText());
+                ab.setEmail(email.getText());
+                ab.setSerie(String.valueOf(serie.getSelectedItem()));
+                ab.setEscola(escola.getText());
+                ab.setTelefone(telefone.getText());
+
+                ad.salvar(ab);
+            } else {
+                JOptionPane.showMessageDialog(null, "Email Inválido", "AVISO", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
     }//GEN-LAST:event_salvarActionPerformed
 
     private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
         alunoBEAN ab = new alunoBEAN();
         alunoDAO ad = new alunoDAO();
-        
-        if(matricula.getText().equals("") || nome.getText().equals("") || escola.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Preencha os campos obrigatórios","AVISO",JOptionPane.ERROR_MESSAGE);
-        }else{
-            int matri = Integer.parseInt(JOptionPane.showInputDialog("Digite a matrícula do aluno para atualização: "));
-            ab.setMatricula(Integer.parseInt(matricula.getText()));
-            ab.setNome(nome.getText());
-            ab.setEmail(email.getText());
-            ab.setSerie(String.valueOf(serie.getSelectedItem()));
-            ab.setEscola(escola.getText());
-            ab.setTelefone(telefone.getText());
-            
-            ad.atualizar(ab,matri);
+
+        //Validar Email
+        int v = 0;
+
+        for (int i = 0; i < email.getText().length(); i++) {
+            if (email.getText().charAt(i) == '@' && email.getText().endsWith("@gmail.com")) {
+                v = v + 1;
+            }
+        }
+
+        if (matricula.getText().equals("") || nome.getText().equals("") || escola.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios", "AVISO", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            if (v == 1) {
+                int matri = Integer.parseInt(JOptionPane.showInputDialog("Digite a matrícula do aluno para atualização: "));
+                ab.setMatricula(Integer.parseInt(matricula.getText()));
+                ab.setNome(nome.getText());
+                ab.setEmail(email.getText());
+                ab.setSerie(String.valueOf(serie.getSelectedItem()));
+                ab.setEscola(escola.getText());
+                ab.setTelefone(telefone.getText());
+
+                ad.atualizar(ab, matri);
+            } else {
+                JOptionPane.showMessageDialog(null, "Email Inválido", "AVISO", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
     }//GEN-LAST:event_atualizarActionPerformed
 
@@ -270,36 +226,53 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
             Connection con = conexao.getConnection();
             PreparedStatement stmt = null;
             ResultSet rs = null;
-            
+
             int matri = Integer.parseInt(JOptionPane.showInputDialog("Digite a matrícula para Busca: "));
-            stmt = con.prepareStatement("SELECT * FROM alunos WHERE matricula = '"+matri+"'");
+            stmt = con.prepareStatement("SELECT * FROM alunos WHERE matricula = '" + matri + "'");
             rs = stmt.executeQuery();
-            
-            if(rs.next()){
-                
-                    matricula.setText(String.valueOf(rs.getInt("matricula")));
-                    nome.setText(rs.getString("nome"));
-                    email.setText(rs.getString("email"));
-                    telefone.setText(rs.getString("telefone"));
-                    serie.setSelectedItem(rs.getString("serie"));
-                    escola.setText(rs.getString("escola"));
-                
-            }else{
-                JOptionPane.showMessageDialog(null,"É preciso da matrícula para confirmação!!","Aviso",JOptionPane.ERROR_MESSAGE);
+
+            if (rs.next()) {
+
+                matricula.setText(String.valueOf(rs.getInt("matricula")));
+                nome.setText(rs.getString("nome"));
+                email.setText(rs.getString("email"));
+                telefone.setText(rs.getString("telefone"));
+                serie.setSelectedItem(rs.getString("serie"));
+                escola.setText(rs.getString("escola"));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "É preciso da matrícula para confirmação!!", "Aviso", JOptionPane.ERROR_MESSAGE);
             }
-            
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"É preciso da matrícula para confirmação!!","Aviso",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "É preciso da matrícula para confirmação!!", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_pesquisarActionPerformed
 
     private void deletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarActionPerformed
         alunoDAO ad = new alunoDAO();
         int matricula = Integer.parseInt(JOptionPane.showInputDialog("Digite a matrícula para confirmação da exclusão"));
-        
+
         ad.deletar(matricula);
     }//GEN-LAST:event_deletarActionPerformed
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
+
+    private void serieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_serieActionPerformed
+
+    private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new Admin().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -307,16 +280,8 @@ public class CadastroAluno extends javax.swing.JInternalFrame {
     private javax.swing.JButton deletar;
     private javax.swing.JTextField email;
     private javax.swing.JTextField escola;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField matricula;
     private javax.swing.JTextField nome;
     private javax.swing.JButton pesquisar;

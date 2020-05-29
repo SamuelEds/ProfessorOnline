@@ -5,6 +5,11 @@
  */
 package view;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author User
@@ -15,6 +20,17 @@ public class SplashScreen extends javax.swing.JFrame {
      * Creates new form SplashScreen
      */
     public SplashScreen() {
+        /*try {
+            UIManager.setLookAndFeel("Nimbus");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SplashScreen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(SplashScreen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(SplashScreen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(SplashScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
         initComponents();
     }
 
@@ -27,47 +43,38 @@ public class SplashScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         progresso = new javax.swing.JLabel();
         barra = new javax.swing.JProgressBar();
+        jLabel3 = new javax.swing.JLabel();
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/screen-0.jpg"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 153, 0));
         setUndecorated(true);
         setResizable(false);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(51, 153, 0));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Professor");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 240, 50));
-
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 102, 0));
-        jLabel4.setText("Online");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 300, 50));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("O portal do professor da rede estadual");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 310, 20));
-
-        progresso.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        progresso.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        progresso.setForeground(new java.awt.Color(40, 103, 98));
         progresso.setText("0%");
-        jPanel1.add(progresso, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 50, -1));
-        jPanel1.add(barra, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 270, 20));
+        getContentPane().add(progresso, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, 60, -1));
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 450, 560);
+        barra.setBackground(new java.awt.Color(255, 255, 255));
+        barra.setForeground(new java.awt.Color(35, 107, 98));
+        barra.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        barra.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        barra.setEnabled(false);
+        barra.setFocusable(false);
+        barra.setRequestFocusEnabled(false);
+        barra.setVerifyInputWhenFocusTarget(false);
+        getContentPane().add(barra, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 270, 30));
 
-        setSize(new java.awt.Dimension(453, 564));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/arteLoading.jpeg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 370, 620));
+
+        setSize(new java.awt.Dimension(360, 456));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -131,10 +138,8 @@ sc.setVisible(false);
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar barra;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel progresso;
     // End of variables declaration//GEN-END:variables
 }

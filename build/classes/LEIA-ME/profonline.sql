@@ -1,114 +1,219 @@
--- MySQL dump 10.16  Distrib 10.1.38-MariaDB, for Win64 (AMD64)
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: profonline
--- ------------------------------------------------------
--- Server version	10.1.38-MariaDB
+-- Host: 127.0.0.1
+-- Generation Time: 29-Maio-2020 às 19:53
+-- Versão do servidor: 10.1.38-MariaDB
+-- versão do PHP: 7.1.28
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Table structure for table `alunos`
+-- Database: `profonline`
 --
 
-DROP TABLE IF EXISTS `alunos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `alunos`
+--
+
 CREATE TABLE `alunos` (
   `matricula` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) DEFAULT NULL,
   `telefone` varchar(100) DEFAULT NULL,
   `serie` varchar(30) NOT NULL,
-  `escola` varchar(100) NOT NULL,
-  PRIMARY KEY (`matricula`)
+  `escola` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `alunos`
+-- Extraindo dados da tabela `alunos`
 --
 
-LOCK TABLES `alunos` WRITE;
-/*!40000 ALTER TABLE `alunos` DISABLE KEYS */;
-INSERT INTO `alunos` VALUES (4111810,'Samuel Edson Ribeiro Sampaio','saa@gmail.com','123','Primeiro Ano do Ensino Médio','Joaquim Nogueira'),(4111899,'Samuel Edson Ribeiro Sampaio','saa@gmail.com','123','Primeiro Ano do Ensino Médio','Joaquim Nogueira');
-/*!40000 ALTER TABLE `alunos` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `alunos` (`matricula`, `nome`, `email`, `telefone`, `serie`, `escola`) VALUES
+(577790, 'Humberto Gabriel Ferreira', 'hg@gmail.com', '123', 'Segundo Ano do Ensino Médio', 'Arisvaldo Cruz e Souza'),
+(4111722, 'Samuel Edson Ribeiro Sampaio', 'samuel@gmail.com', '(85) 98765-9034', 'Terceiro Ano do Ensino Médio', 'Joaqui Nogueira Silva'),
+(4111810, 'Samuel Edson Ribeiro Sampaio', 'saa@gmail.com', '123', 'Primeiro Ano do Ensino Médio', 'Joaquim Nogueira'),
+(4111890, 'Felipe Santana', 'felipe@gmail.com', '(85) - 98672-8900', 'Terceiro Ano do Ensino Médio', 'Arivaldo de Azevedo'),
+(4111899, 'Sla quem é', 'saa@gmail.com', '123', 'Primeiro Ano do Ensino Médio', 'Joaquim Nogueira');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `boletim`
+-- Estrutura da tabela `boletim`
 --
 
-DROP TABLE IF EXISTS `boletim`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `boletim` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
+  `matricula` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `disciplina` varchar(100) NOT NULL,
   `serie` varchar(200) NOT NULL,
-  `prova_parcial` double NOT NULL,
-  `prova_bimestral` double NOT NULL,
-  `media` double NOT NULL,
-  `resultado` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `prova_parcial` float NOT NULL,
+  `prova_bimestral` float NOT NULL,
+  `media` float NOT NULL,
+  `resultado` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `boletim`
+-- Extraindo dados da tabela `boletim`
 --
 
-LOCK TABLES `boletim` WRITE;
-/*!40000 ALTER TABLE `boletim` DISABLE KEYS */;
-INSERT INTO `boletim` VALUES (1,'Samuel Edson Ribeiro Sampaio','Física','Primeiro Ano do Ensino Médio',10,10,10,'APROVADO'),(2,'Samuel Edson Ribeiro Sampaio','Português','Primeiro Ano do Ensino Médio',8,8,8,'APROVADO'),(6,'Samuel Edson Ribeiro Sampaio','Português','Primeiro Ano do Ensino Médio',2,2,2,'REPROVADO');
-/*!40000 ALTER TABLE `boletim` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `boletim` (`id`, `matricula`, `nome`, `disciplina`, `serie`, `prova_parcial`, `prova_bimestral`, `media`, `resultado`) VALUES
+(1, 577790, 'Humberto Gabriel Ferreira', 'Português', 'Segundo Ano do Ensino Médio', 9.38, 10, 9.7, 'APROVADO'),
+(2, 4111722, 'Samuel Edson Ribeiro Sampaio', 'Português', 'Terceiro Ano do Ensino Médio', 9.38, 10, 9.7, 'APROVADO'),
+(3, 4111899, 'Sla quem é', 'Português', 'Primeiro Ano do Ensino Médio', 9.5, 10, 9.8, 'APROVADO'),
+(4, 4111899, 'Sla quem é', 'Português', 'Primeiro Ano do Ensino Médio', 8, 10, 9, 'APROVADO');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `professores`
+-- Estrutura da tabela `escola`
 --
 
-DROP TABLE IF EXISTS `professores`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `escola` (
+  `nome` varchar(64) DEFAULT NULL,
+  `bairro` varchar(54) DEFAULT NULL,
+  `cep` varchar(64) DEFAULT NULL,
+  `cidade` varchar(64) DEFAULT NULL,
+  `dependencia` varchar(64) DEFAULT NULL,
+  `endereco` varchar(64) DEFAULT NULL,
+  `codigo` varchar(64) DEFAULT NULL,
+  `id` int(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `escola`
+--
+
+INSERT INTO `escola` (`nome`, `bairro`, `cep`, `cidade`, `dependencia`, `endereco`, `codigo`, `id`) VALUES
+('2', '1', '5', '7', 'Estadual', '4', '3', 1),
+('b', 'b', 'bb', 'b', 'Estadual', 'b', 'bb', 2),
+('1', '5', '2', '3', 'Estadual', NULL, '4', 3),
+('p', 'p', 'p', 'p', 'Particular', 'p', 'p', 7),
+('ggggggggg', 'Sousa', 'De sa', 'Marques', 'Particular', '123', '4', 8),
+('Pedin2', 'E', 'POL', 'PLO', 'Estadual', 'SEI', 'RUA', 9),
+('E.E.E.P JOAQUIM NOGUEIRA', 'Bairro dos Chiques', '2341-908', 'Fortaleza', 'Estadual', 'Rua dos Burgueses', 'SEEEEPM', 12);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `professores`
+--
+
 CREATE TABLE `professores` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `nome` varchar(200) NOT NULL,
   `email` varchar(200) NOT NULL,
   `telefone` varchar(200) DEFAULT NULL,
   `escola_per` varchar(200) NOT NULL,
   `disciplina` varchar(50) NOT NULL,
-  `senha` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `senha` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `professores`
+-- Extraindo dados da tabela `professores`
 --
 
-LOCK TABLES `professores` WRITE;
-/*!40000 ALTER TABLE `professores` DISABLE KEYS */;
-INSERT INTO `professores` VALUES (3,'Ryan','re@gmail.com','1234','Sla','Inglês','123'),(4,'Ryan','re@gmail.con','1234','Sla','Inglês','123'),(5,'Ryan','sr@gmail.con','1234','Sla','Inglês','123');
-/*!40000 ALTER TABLE `professores` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO `professores` (`id`, `nome`, `email`, `telefone`, `escola_per`, `disciplina`, `senha`) VALUES
+(1, 'Fernanda', 'frm@gmail.com', '123', 'JN', 'Química', '123'),
+(2, 'Denis', 'denis@gmail.com', '123', 'JN', 'Português', '123'),
+(3, 'Fernando', 'fer@gmail.com', '(85) - 98342-3123', 'Arivaldo de Azevedo Neves', 'Sociologia', '123');
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `resultado`
+--
+
+CREATE TABLE `resultado` (
+  `matricula` int(11) NOT NULL,
+  `nome` varchar(200) NOT NULL,
+  `serie` varchar(100) NOT NULL,
+  `disciplina` varchar(100) NOT NULL,
+  `bimestre_um` float DEFAULT NULL,
+  `bimestre_dois` float DEFAULT NULL,
+  `bimestre_tres` float DEFAULT NULL,
+  `bimestre_quatro` float DEFAULT NULL,
+  `media_final` float DEFAULT NULL,
+  `resultado` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `resultado`
+--
+
+INSERT INTO `resultado` (`matricula`, `nome`, `serie`, `disciplina`, `bimestre_um`, `bimestre_dois`, `bimestre_tres`, `bimestre_quatro`, `media_final`, `resultado`) VALUES
+(4111810, 'Samuel Edson Ribeiro Sampaio', 'Primeiro Ano do Ensino Médio', 'Português', 10, 10, 10, 10, 10, 'APROVADO');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `alunos`
+--
+ALTER TABLE `alunos`
+  ADD PRIMARY KEY (`matricula`);
+
+--
+-- Indexes for table `boletim`
+--
+ALTER TABLE `boletim`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `escola`
+--
+ALTER TABLE `escola`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `professores`
+--
+ALTER TABLE `professores`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `resultado`
+--
+ALTER TABLE `resultado`
+  ADD PRIMARY KEY (`matricula`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `boletim`
+--
+ALTER TABLE `boletim`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `escola`
+--
+ALTER TABLE `escola`
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `professores`
+--
+ALTER TABLE `professores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2020-02-27 20:46:40

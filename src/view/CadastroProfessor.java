@@ -6,8 +6,15 @@
 package view;
 
 import bean.ProfessorBean;
+import connection.conexao;
 import dao.ProfessorDao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import view.sub_view.ListarEscolas;
+import view.sub_view.ListarProfessores;
 
 /**
  *
@@ -22,6 +29,36 @@ public class CadastroProfessor extends javax.swing.JFrame {
         initComponents();
     }
 
+    private void pesquisarDados(String email) {
+        Connection con = conexao.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM professores WHERE email = '" + email + "'");
+            rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                nome.setText(rs.getString("nome"));
+                this.email.setText(rs.getString("email"));
+                telefone.setText(rs.getString("telefone"));
+                escola_pertencente.setText(rs.getString("escola_per"));
+                disciplina.setSelectedItem(rs.getString("disciplina"));
+                senha.setText(rs.getString("senha"));
+            }else{
+                JOptionPane.showMessageDialog(null,"EMAIL INVÁLIDO / CONTA NÃO EXISTE","AVISO",JOptionPane.ERROR_MESSAGE);
+            }
+            
+            
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"EMAIL INVÁLIDO / CONTA NÃO EXISTE","AVISO",JOptionPane.ERROR_MESSAGE);
+        }finally
+        {
+            conexao.closeConnection(con, stmt, rs);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,194 +68,176 @@ public class CadastroProfessor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         nome = new javax.swing.JTextField();
-        email = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         telefone = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         escola_pertencente = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        senha = new javax.swing.JPasswordField();
-        confirmar_senha = new javax.swing.JPasswordField();
         disciplina = new javax.swing.JComboBox<>();
-        editar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        confirmar_senha = new javax.swing.JPasswordField();
+        email = new javax.swing.JTextField();
+        senha = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
+        btnPesquisarESCOLA = new javax.swing.JLabel();
+        pesquisarProfessor = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        editar = new javax.swing.JButton();
+        cadastrar = new javax.swing.JButton();
+        voltar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel9.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
-        jLabel9.setText("CADASTRAR NO SISTEMA");
-        jLabel9.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(290, 10, 330, 40);
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton1.setText("CADASTRAR DADOS");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        nome.setBorder(null);
+        nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                nomeActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(210, 460, 220, 60);
+        getContentPane().add(nome);
+        nome.setBounds(170, 230, 150, 15);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        telefone.setBorder(null);
+        telefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telefoneActionPerformed(evt);
+            }
+        });
+        getContentPane().add(telefone);
+        telefone.setBounds(170, 370, 140, 20);
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel2.setText("NOME: *");
-
-        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel3.setText("EMAIL: *");
-
-        jLabel4.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel4.setText("TELEFONE:");
-
-        jLabel5.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel5.setText("ESCOLA PERTENCENTE: *");
-
-        jLabel6.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel6.setText("DISCIPLINA: *");
-
-        jLabel7.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel7.setText("SENHA: *");
-
-        jLabel8.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel8.setText("CONFIRMAR SENHA: *");
+        escola_pertencente.setBorder(null);
+        getContentPane().add(escola_pertencente);
+        escola_pertencente.setBounds(170, 430, 380, 20);
 
         disciplina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Português", "Matemática", "Biologia", "Física", "Química", "Ed. Física", "Inglês", "Espanhol", "Geografia", "Filosofia", "Sociologia", "História" }));
+        getContentPane().add(disciplina);
+        disciplina.setBounds(470, 370, 130, 24);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addGap(49, 49, 49)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(confirmar_senha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                        .addComponent(senha, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(escola_pertencente, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(disciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(203, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(escola_pertencente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(disciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmar_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
+        confirmar_senha.setBorder(null);
+        getContentPane().add(confirmar_senha);
+        confirmar_senha.setBounds(460, 300, 130, 15);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(10, 100, 870, 350);
+        email.setBorder(null);
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
+        getContentPane().add(email);
+        email.setBounds(170, 300, 160, 20);
+
+        senha.setBorder(null);
+        getContentPane().add(senha);
+        senha.setBounds(440, 230, 150, 15);
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Clique na lupa para efetuar uma pesquisa de dados");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(110, 170, 410, 30);
+
+        btnPesquisarESCOLA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/IconePesquisarEscola.png"))); // NOI18N
+        btnPesquisarESCOLA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPesquisarESCOLAMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnPesquisarESCOLA);
+        btnPesquisarESCOLA.setBounds(570, 410, 60, 60);
+
+        pesquisarProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/IconePesquisarProfessor.png"))); // NOI18N
+        pesquisarProfessor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pesquisarProfessorMouseClicked(evt);
+            }
+        });
+        getContentPane().add(pesquisarProfessor);
+        pesquisarProfessor.setBounds(530, 160, 60, 60);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/StyleCadastroProfessor.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 670, 616);
 
         editar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         editar.setText("EDITAR DADOS");
+        editar.setBorderPainted(false);
+        editar.setContentAreaFilled(false);
+        editar.setDefaultCapable(false);
+        editar.setFocusPainted(false);
+        editar.setFocusable(false);
+        editar.setRequestFocusEnabled(false);
+        editar.setVerifyInputWhenFocusTarget(false);
         editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarActionPerformed(evt);
             }
         });
         getContentPane().add(editar);
-        editar.setBounds(570, 460, 200, 60);
+        editar.setBounds(350, 510, 170, 50);
 
-        jButton2.setFont(new java.awt.Font("Yu Gothic", 1, 18)); // NOI18N
-        jButton2.setText("VOLTAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        cadastrar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cadastrar.setText("CADASTRAR DADOS");
+        cadastrar.setBorderPainted(false);
+        cadastrar.setContentAreaFilled(false);
+        cadastrar.setDefaultCapable(false);
+        cadastrar.setFocusPainted(false);
+        cadastrar.setFocusable(false);
+        cadastrar.setRequestFocusEnabled(false);
+        cadastrar.setVerifyInputWhenFocusTarget(false);
+        cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                cadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(10, 10, 130, 40);
+        getContentPane().add(cadastrar);
+        cadastrar.setBounds(100, 510, 190, 50);
 
-        jLabel1.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
-        jLabel1.setText("AVISO: Campos com * são obrigatórios");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(580, 70, 300, 20);
+        voltar.setText("jButton3");
+        voltar.setBorderPainted(false);
+        voltar.setContentAreaFilled(false);
+        voltar.setDefaultCapable(false);
+        voltar.setFocusPainted(false);
+        voltar.setFocusable(false);
+        voltar.setRequestFocusEnabled(false);
+        voltar.setVerifyInputWhenFocusTarget(false);
+        voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(voltar);
+        voltar.setBounds(10, 174, 73, 40);
 
-        setSize(new java.awt.Dimension(927, 581));
+        setSize(new java.awt.Dimension(668, 641));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+    private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
+
         //Validar Email
         int v = 0;
-        
-        for(int i = 0; i < email.getText().length();i++){
-            if(email.getText().charAt(i) == '@' && email.getText().endsWith("@gmail.com")){
+
+        for (int i = 0; i < email.getText().length(); i++) {
+            if (email.getText().charAt(i) == '@' && email.getText().endsWith("@gmail.com")) {
                 v = v + 1;
             }
         }
-        
-        
-        if(v == 1){
-            
-        
-            if(email.getText().equals("") 
-                || String.valueOf(senha.getPassword()).equals("")
-                || nome.getText().equals("")
-                || String.valueOf(disciplina.getSelectedItem()).equals("")
-                || escola_pertencente.getText().equals("")
-                || String.valueOf(confirmar_senha.getPassword()).equals("")
-            )
-            {
-                JOptionPane.showMessageDialog(null,"Preencha todos os campos");
-            }else if(!(String.valueOf(confirmar_senha.getPassword()).equals(String.valueOf(senha.getPassword())))){
-                JOptionPane.showMessageDialog(null,"Campos não Coincidem","AVISO",JOptionPane.ERROR_MESSAGE);
-            }else{
+
+        if (v == 1) {
+
+            if (email.getText().equals("")
+                    || String.valueOf(senha.getPassword()).equals("")
+                    || nome.getText().equals("")
+                    || String.valueOf(disciplina.getSelectedItem()).equals("")
+                    || escola_pertencente.getText().equals("")
+                    || String.valueOf(confirmar_senha.getPassword()).equals("")) {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+            } else if (!(String.valueOf(confirmar_senha.getPassword()).equals(String.valueOf(senha.getPassword())))) {
+                JOptionPane.showMessageDialog(null, "Campos não Coincidem", "AVISO", JOptionPane.ERROR_MESSAGE);
+            } else {
 
                 ProfessorBean pb = new ProfessorBean();
-                ProfessorDao  pd = new ProfessorDao();
+                ProfessorDao pd = new ProfessorDao();
 
                 pb.setNome(nome.getText());
                 pb.setEmail(email.getText());
@@ -228,7 +247,7 @@ public class CadastroProfessor extends javax.swing.JFrame {
                 pb.setDisciplina(String.valueOf(disciplina.getSelectedItem()));
 
                 pd.create(pb);
-                
+
                 nome.setText("");
                 email.setText("");
                 telefone.setText("");
@@ -237,42 +256,38 @@ public class CadastroProfessor extends javax.swing.JFrame {
                 senha.setText("");
                 confirmar_senha.setText("");
             }
-            
-        }else{
-            JOptionPane.showMessageDialog(null,"Email Inválido","AVISO",JOptionPane.ERROR_MESSAGE);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Email Inválido", "AVISO", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_cadastrarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        
+
         //Validar Email
         int v = 0;
-        
-        for(int i = 0; i < email.getText().length();i++){
-            if(email.getText().charAt(i) == '@' && email.getText().endsWith("@gmail.com")){
+
+        for (int i = 0; i < email.getText().length(); i++) {
+            if (email.getText().charAt(i) == '@' && email.getText().endsWith("@gmail.com")) {
                 v = v + 1;
             }
         }
-        
-        if(v == 1){
-        
-            if(email.getText().equals("") 
-                    
-                || String.valueOf(senha.getPassword()).equals("")
-                || nome.getText().equals("")
-                || String.valueOf(disciplina.getSelectedItem()).equals("")
-                || escola_pertencente.getText().equals("")
-                || String.valueOf(confirmar_senha.getPassword()).equals("")        
-                    
-            )
-            {
-                JOptionPane.showMessageDialog(null,"Preencha todos os campos");
-            }else if(!(String.valueOf(confirmar_senha.getPassword()).equals(String.valueOf(senha.getPassword())))){
-                JOptionPane.showMessageDialog(null,"Campos não Coincidem");
-            }else{
+
+        if (v == 1) {
+
+            if (email.getText().equals("")
+                    || String.valueOf(senha.getPassword()).equals("")
+                    || nome.getText().equals("")
+                    || String.valueOf(disciplina.getSelectedItem()).equals("")
+                    || escola_pertencente.getText().equals("")
+                    || String.valueOf(confirmar_senha.getPassword()).equals("")) {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+            } else if (!(String.valueOf(confirmar_senha.getPassword()).equals(String.valueOf(senha.getPassword())))) {
+                JOptionPane.showMessageDialog(null, "Campos não Coincidem");
+            } else {
 
                 ProfessorBean pb = new ProfessorBean();
-                ProfessorDao  pd = new ProfessorDao();
+                ProfessorDao pd = new ProfessorDao();
 
                 String email = JOptionPane.showInputDialog("Digite seu antigo Email: ");
 
@@ -284,8 +299,8 @@ public class CadastroProfessor extends javax.swing.JFrame {
                 pb.setDisciplina(String.valueOf(disciplina.getSelectedItem()));
                 pb.setSenha(String.valueOf(senha.getPassword()));
 
-                pd.atualizar(pb,email);
-                
+                pd.atualizar(pb, email);
+
                 nome.setText(pb.getNome());
                 this.email.setText(pb.getEmail());
                 senha.setText(pb.getSenha());
@@ -293,16 +308,40 @@ public class CadastroProfessor extends javax.swing.JFrame {
                 escola_pertencente.setText(pb.getEscola_pertencente());
                 senha.setText(pb.getSenha());
             }
-        
-        }else{
-            JOptionPane.showMessageDialog(null,"Email Inválido","AVISO",JOptionPane.ERROR_MESSAGE);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Email Inválido", "AVISO", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_editarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new Login().setVisible(true);
+    private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeActionPerformed
+
+    private void voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarActionPerformed
+        new Admin().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_voltarActionPerformed
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
+
+    private void telefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_telefoneActionPerformed
+
+    private void btnPesquisarESCOLAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarESCOLAMouseClicked
+        ListarEscolas le = new ListarEscolas(this);
+        
+        le.resgatarNome(escola_pertencente.getText());
+        le.setVisible(true);
+        
+    }//GEN-LAST:event_btnPesquisarESCOLAMouseClicked
+
+    private void pesquisarProfessorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pesquisarProfessorMouseClicked
+        new ListarProfessores(this).setVisible(true);
+    }//GEN-LAST:event_pesquisarProfessorMouseClicked
 
     /**
      * @param args the command line arguments
@@ -341,25 +380,19 @@ public class CadastroProfessor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField confirmar_senha;
-    private javax.swing.JComboBox<String> disciplina;
+    private javax.swing.JLabel btnPesquisarESCOLA;
+    private javax.swing.JButton cadastrar;
+    public javax.swing.JPasswordField confirmar_senha;
+    public javax.swing.JComboBox<String> disciplina;
     private javax.swing.JButton editar;
-    private javax.swing.JTextField email;
-    private javax.swing.JTextField escola_pertencente;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    public javax.swing.JTextField email;
+    public javax.swing.JTextField escola_pertencente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField nome;
-    private javax.swing.JPasswordField senha;
-    private javax.swing.JTextField telefone;
+    public javax.swing.JTextField nome;
+    private javax.swing.JLabel pesquisarProfessor;
+    public javax.swing.JPasswordField senha;
+    public javax.swing.JTextField telefone;
+    private javax.swing.JButton voltar;
     // End of variables declaration//GEN-END:variables
 }

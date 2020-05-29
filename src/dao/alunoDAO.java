@@ -46,7 +46,7 @@ public class alunoDAO {
                 stmt.setString(6, ab.getEscola());
 
                 stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Dados Atualizado com Sucesso!!");
+            JOptionPane.showMessageDialog(null,"Dados Atualizados com Sucesso!!");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null,"Esse registro não foi encontrados");
             }

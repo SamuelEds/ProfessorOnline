@@ -63,11 +63,34 @@ public class GerProf extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         professores = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        pesquisa = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         mostrar = new javax.swing.JButton();
         deletar = new javax.swing.JButton();
+        pesquisa = new javax.swing.JButton();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        professores1 = new javax.swing.JTable();
+        mostrar1 = new javax.swing.JButton();
+        deletar1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        pesquisa1 = new javax.swing.JButton();
+        jInternalFrame2 = new javax.swing.JInternalFrame();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        professores2 = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        mostrar2 = new javax.swing.JButton();
+        deletar2 = new javax.swing.JButton();
+        pesquisa2 = new javax.swing.JButton();
+        jInternalFrame3 = new javax.swing.JInternalFrame();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        professores3 = new javax.swing.JTable();
+        mostrar3 = new javax.swing.JButton();
+        deletar3 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        pesquisa3 = new javax.swing.JButton();
+
+        setClosable(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         professores.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, null, null, new java.awt.Color(204, 204, 204)));
         professores.setModel(new javax.swing.table.DefaultTableModel(
@@ -96,19 +119,11 @@ public class GerProf extends javax.swing.JInternalFrame {
         professores.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(professores);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
-        jLabel1.setText("VISUALIZAR PROFESSORES CADASTRADOS");
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 599, 278));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-
-        pesquisa.setBackground(new java.awt.Color(204, 204, 204));
-        pesquisa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        pesquisa.setText("PESQUISAR");
-        pesquisa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisaActionPerformed(evt);
-            }
-        });
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/GerAluno.png"))); // NOI18N
+        jLabel2.setToolTipText("");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 550));
 
         mostrar.setBackground(new java.awt.Color(204, 204, 204));
         mostrar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -118,6 +133,7 @@ public class GerProf extends javax.swing.JInternalFrame {
                 mostrarActionPerformed(evt);
             }
         });
+        getContentPane().add(mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 490, 190, 55));
 
         deletar.setBackground(new java.awt.Color(204, 204, 204));
         deletar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -127,61 +143,306 @@ public class GerProf extends javax.swing.JInternalFrame {
                 deletarActionPerformed(evt);
             }
         });
+        getContentPane().add(deletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 490, 165, 55));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92)
-                .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(deletar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+        pesquisa.setBackground(new java.awt.Color(204, 204, 204));
+        pesquisa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        pesquisa.setText("PESQUISAR");
+        pesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(pesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, 174, 55));
+
+        professores1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, null, null, new java.awt.Color(204, 204, 204)));
+        professores1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "Email", "Telefone", "Escola Pertencente", "Disciplina"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        professores1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(professores1);
+
+        mostrar1.setBackground(new java.awt.Color(204, 204, 204));
+        mostrar1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        mostrar1.setText("MOSTRAR TUDO");
+        mostrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrar1ActionPerformed(evt);
+            }
+        });
+
+        deletar1.setBackground(new java.awt.Color(204, 204, 204));
+        deletar1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        deletar1.setText("DELETAR");
+        deletar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletar1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("jLabel2");
+
+        pesquisa1.setBackground(new java.awt.Color(204, 204, 204));
+        pesquisa1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        pesquisa1.setText("PESQUISAR");
+        pesquisa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisa1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(162, 162, 162))
+            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                    .addGap(378, 378, 378)
+                    .addComponent(pesquisa1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(109, Short.MAX_VALUE)))
+            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                    .addGap(349, 349, 349)
+                    .addComponent(mostrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(79, Short.MAX_VALUE)))
+            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                    .addGap(383, 383, 383)
+                    .addComponent(deletar1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(113, Short.MAX_VALUE)))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(mostrar, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-                    .addComponent(pesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(deletar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(106, Short.MAX_VALUE))
+            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                    .addGap(218, 218, 218)
+                    .addComponent(pesquisa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(219, 219, 219)))
+            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                    .addGap(218, 218, 218)
+                    .addComponent(mostrar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(219, 219, 219)))
+            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                    .addGap(218, 218, 218)
+                    .addComponent(deletar1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(195, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 867, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 25, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(199, 199, 199))
+        getContentPane().add(jInternalFrame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(465, 246, 0, 0));
+
+        jInternalFrame2.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        professores2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, null, null, new java.awt.Color(204, 204, 204)));
+        professores2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "Email", "Telefone", "Escola Pertencente", "Disciplina"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        professores2.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(professores2);
+
+        jInternalFrame2.getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 599, 278));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/GerAluno.png"))); // NOI18N
+        jLabel4.setToolTipText("");
+        jInternalFrame2.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 550));
+
+        mostrar2.setBackground(new java.awt.Color(204, 204, 204));
+        mostrar2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        mostrar2.setText("MOSTRAR TUDO");
+        mostrar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrar2ActionPerformed(evt);
+            }
+        });
+        jInternalFrame2.getContentPane().add(mostrar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 490, 190, 55));
+
+        deletar2.setBackground(new java.awt.Color(204, 204, 204));
+        deletar2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        deletar2.setText("DELETAR");
+        deletar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletar2ActionPerformed(evt);
+            }
+        });
+        jInternalFrame2.getContentPane().add(deletar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 490, 165, 55));
+
+        pesquisa2.setBackground(new java.awt.Color(204, 204, 204));
+        pesquisa2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        pesquisa2.setText("PESQUISAR");
+        pesquisa2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisa2ActionPerformed(evt);
+            }
+        });
+        jInternalFrame2.getContentPane().add(pesquisa2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, 174, 55));
+
+        professores3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, null, null, new java.awt.Color(204, 204, 204)));
+        professores3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "Email", "Telefone", "Escola Pertencente", "Disciplina"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        professores3.getTableHeader().setReorderingAllowed(false);
+        jScrollPane4.setViewportView(professores3);
+
+        mostrar3.setBackground(new java.awt.Color(204, 204, 204));
+        mostrar3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        mostrar3.setText("MOSTRAR TUDO");
+        mostrar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrar3ActionPerformed(evt);
+            }
+        });
+
+        deletar3.setBackground(new java.awt.Color(204, 204, 204));
+        deletar3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        deletar3.setText("DELETAR");
+        deletar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletar3ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("jLabel2");
+
+        pesquisa3.setBackground(new java.awt.Color(204, 204, 204));
+        pesquisa3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        pesquisa3.setText("PESQUISAR");
+        pesquisa3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisa3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jInternalFrame3Layout = new javax.swing.GroupLayout(jInternalFrame3.getContentPane());
+        jInternalFrame3.getContentPane().setLayout(jInternalFrame3Layout);
+        jInternalFrame3Layout.setHorizontalGroup(
+            jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame3Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(162, 162, 162))
+            .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jInternalFrame3Layout.createSequentialGroup()
+                    .addGap(378, 378, 378)
+                    .addComponent(pesquisa3, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(109, Short.MAX_VALUE)))
+            .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jInternalFrame3Layout.createSequentialGroup()
+                    .addGap(349, 349, 349)
+                    .addComponent(mostrar3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(79, Short.MAX_VALUE)))
+            .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jInternalFrame3Layout.createSequentialGroup()
+                    .addGap(383, 383, 383)
+                    .addComponent(deletar3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(113, Short.MAX_VALUE)))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+        jInternalFrame3Layout.setVerticalGroup(
+            jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame3Layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(109, Short.MAX_VALUE))
+            .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jInternalFrame3Layout.createSequentialGroup()
+                    .addGap(218, 218, 218)
+                    .addComponent(pesquisa3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(219, 219, 219)))
+            .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jInternalFrame3Layout.createSequentialGroup()
+                    .addGap(218, 218, 218)
+                    .addComponent(mostrar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(219, 219, 219)))
+            .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jInternalFrame3Layout.createSequentialGroup()
+                    .addGap(218, 218, 218)
+                    .addComponent(deletar3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(196, Short.MAX_VALUE)))
         );
+
+        jInternalFrame2.getContentPane().add(jInternalFrame3, new org.netbeans.lib.awtextra.AbsoluteConstraints(465, 246, 0, 0));
+
+        getContentPane().add(jInternalFrame2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -231,14 +492,70 @@ public class GerProf extends javax.swing.JInternalFrame {
         puxar();
     }//GEN-LAST:event_mostrarActionPerformed
 
+    private void mostrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mostrar1ActionPerformed
+
+    private void deletar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deletar1ActionPerformed
+
+    private void pesquisa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisa1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pesquisa1ActionPerformed
+
+    private void mostrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mostrar2ActionPerformed
+
+    private void deletar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deletar2ActionPerformed
+
+    private void pesquisa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisa2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pesquisa2ActionPerformed
+
+    private void mostrar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mostrar3ActionPerformed
+
+    private void deletar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deletar3ActionPerformed
+
+    private void pesquisa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisa3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pesquisa3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deletar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton deletar1;
+    private javax.swing.JButton deletar2;
+    private javax.swing.JButton deletar3;
+    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JInternalFrame jInternalFrame2;
+    private javax.swing.JInternalFrame jInternalFrame3;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton mostrar;
+    private javax.swing.JButton mostrar1;
+    private javax.swing.JButton mostrar2;
+    private javax.swing.JButton mostrar3;
     private javax.swing.JButton pesquisa;
+    private javax.swing.JButton pesquisa1;
+    private javax.swing.JButton pesquisa2;
+    private javax.swing.JButton pesquisa3;
     private javax.swing.JTable professores;
+    private javax.swing.JTable professores1;
+    private javax.swing.JTable professores2;
+    private javax.swing.JTable professores3;
     // End of variables declaration//GEN-END:variables
 }

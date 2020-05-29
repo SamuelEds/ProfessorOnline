@@ -5,10 +5,19 @@ public class boletimBEAN {
     String nome;
     String disciplina;
     String serie;
-    double provaPar;
-    double provaBim;
-    double media;
+    float provaPar;
+    float provaBim;
+    float media;
     String resultado;
+    int    matricula;
+
+    public int getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
+    }
 
     public int getId() {
         return id;
@@ -42,27 +51,27 @@ public class boletimBEAN {
         this.serie = serie;
     }
 
-    public double getProvaPar() {
+    public float getProvaPar() {
         return provaPar;
     }
 
-    public void setProvaPar(double provaPar) {
+    public void setProvaPar(float provaPar) {
         this.provaPar = provaPar;
     }
 
-    public double getProvaBim() {
+    public float getProvaBim() {
         return provaBim;
     }
 
-    public void setProvaBim(double provaBim) {
+    public void setProvaBim(float provaBim) {
         this.provaBim = provaBim;
     }
 
-    public double getMedia() {
+    public float getMedia() {
         return media;
     }
 
-    public void setMedia(double media) {
+    public void setMedia(float media) {
         this.media = media;
     }
 

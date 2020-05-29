@@ -48,12 +48,14 @@ public class Admin extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
-        janela = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         GProf = new javax.swing.JButton();
         CadAluno = new javax.swing.JButton();
         GBoletim = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        janela = new javax.swing.JDesktopPane();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         voltar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         data = new javax.swing.JLabel();
@@ -75,23 +77,7 @@ public class Admin extends javax.swing.JFrame {
         Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo.setText("Administração");
         jPanel2.add(Titulo);
-        Titulo.setBounds(320, 0, 500, 68);
-
-        janela.setPreferredSize(new java.awt.Dimension(900, 504));
-
-        javax.swing.GroupLayout janelaLayout = new javax.swing.GroupLayout(janela);
-        janela.setLayout(janelaLayout);
-        janelaLayout.setHorizontalGroup(
-            janelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 910, Short.MAX_VALUE)
-        );
-        janelaLayout.setVerticalGroup(
-            janelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 510, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(janela);
-        janela.setBounds(330, 80, 910, 510);
+        Titulo.setBounds(320, 10, 500, 60);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, null, null, new java.awt.Color(0, 93, 1)));
@@ -136,6 +122,33 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
+        janela.setPreferredSize(new java.awt.Dimension(900, 504));
+
+        javax.swing.GroupLayout janelaLayout = new javax.swing.GroupLayout(janela);
+        janela.setLayout(janelaLayout);
+        janelaLayout.setHorizontalGroup(
+            janelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 910, Short.MAX_VALUE)
+        );
+        janelaLayout.setVerticalGroup(
+            janelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 711, Short.MAX_VALUE)
+        );
+
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/relatorioIcon.png"))); // NOI18N
+        jButton2.setText("GERAR RELATÓRIOS");
+
+        jButton3.setBackground(new java.awt.Color(204, 204, 204));
+        jButton3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton3.setText("CADASTRAR PROFESSOR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -146,25 +159,40 @@ public class Admin extends javax.swing.JFrame {
                     .addComponent(GProf)
                     .addComponent(CadAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(GBoletim, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(918, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(janela, javax.swing.GroupLayout.PREFERRED_SIZE, 910, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(GProf, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(CadAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(GBoletim, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(GProf, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(CadAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(GBoletim, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(23, Short.MAX_VALUE)
+                        .addComponent(janela, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         jPanel2.add(jPanel1);
-        jPanel1.setBounds(10, 70, 1240, 530);
+        jPanel1.setBounds(10, 70, 1240, 750);
 
         voltar.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/icone voltar.png"))); // NOI18N
@@ -206,9 +234,9 @@ public class Admin extends javax.swing.JFrame {
         jPanel3.setBounds(830, 10, 420, 50);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 0, 1270, 630);
+        jPanel2.setBounds(0, 0, 1270, 830);
 
-        setSize(new java.awt.Dimension(1281, 675));
+        setSize(new java.awt.Dimension(1281, 885));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -219,7 +247,7 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_GProfActionPerformed
 
     private void CadAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadAlunoActionPerformed
-        CadastroAluno gf = new CadastroAluno();
+         CadastroAluno gf = new CadastroAluno();
         janela.add(gf);
         gf.setVisible(true);
     }//GEN-LAST:event_CadAlunoActionPerformed
@@ -254,6 +282,10 @@ public class Admin extends javax.swing.JFrame {
         Timer t = new Timer(1000, new hora());
         t.start();  
     }//GEN-LAST:event_formWindowOpened
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        new CadastroProfessor().setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,6 +330,8 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JLabel data;
     private javax.swing.JLabel hora;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

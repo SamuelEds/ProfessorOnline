@@ -16,14 +16,15 @@ public class boletimDAO {
         PreparedStatement stmt = null;
         
         try {
-            stmt = con.prepareStatement("INSERT INTO boletim(nome, disciplina, serie, prova_parcial, prova_bimestral, media, resultado) VALUES (?,?,?,?,?,?,?)");
-            stmt.setString(1, ab.getNome());
-            stmt.setString(2, ab.getDisciplina());
-            stmt.setString(3, ab.getSerie());
-            stmt.setDouble(4, ab.getProvaPar());
-            stmt.setDouble(5, ab.getProvaBim());
-            stmt.setDouble(6, ab.getMedia());
-            stmt.setString(7, ab.getResultado());
+            stmt = con.prepareStatement("INSERT INTO boletim(matricula,nome, disciplina, serie, prova_parcial, prova_bimestral, media, resultado) VALUES (?,?,?,?,?,?,?,?)");
+            stmt.setInt(1, ab.getMatricula());
+            stmt.setString(2, ab.getNome());
+            stmt.setString(3, ab.getDisciplina());
+            stmt.setString(4, ab.getSerie());
+            stmt.setFloat(5, ab.getProvaPar());
+            stmt.setFloat(6, ab.getProvaBim());
+            stmt.setFloat(7, ab.getMedia());
+            stmt.setString(8, ab.getResultado());
             
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null,"Dados salvos no banco de dados!!");
@@ -66,9 +67,9 @@ public class boletimDAO {
                     bb.setNome(rs.getString("nome"));
                     bb.setDisciplina("disciplina");
                     bb.setSerie(rs.getString("serie"));
-                    bb.setProvaPar(rs.getDouble("prova_parcial"));
-                    bb.setProvaBim(rs.getDouble("prova_bimestral"));
-                    bb.setMedia(rs.getDouble("media"));
+                    bb.setProvaPar(rs.getFloat("prova_parcial"));
+                    bb.setProvaBim(rs.getFloat("prova_bimestral"));
+                    bb.setMedia(rs.getFloat("media"));
                     bb.setResultado(rs.getString("resultado"));
                 
                 

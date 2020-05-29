@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -29,84 +30,89 @@ public class TelaProfessor extends javax.swing.JFrame {
      */
     public TelaProfessor() {
         initComponents();
-        
+
         nome.setEnabled(false);
         serie.setEnabled(false);
         resultado.setEnabled(false);
         media.setEnabled(false);
-        
+
         puxarAlunos();
         puxarBoletim();
+        
+        totEscores.setText("16");
+        provaP.setText("15");
+        gabaritoB.setText("a,b");
+        provaB.setText("a,b");
+        
     }
-    
-    public void puxar(int id){
-         
+
+    public void puxar(int id) {
+
         Connection con = conexao.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        
+
         try {
-            stmt = con.prepareStatement("SELECT * FROM alunos WHERE matricula like '%"+id+"%'");
+            stmt = con.prepareStatement("SELECT * FROM alunos WHERE matricula like '%" + id + "%'");
             rs = stmt.executeQuery();
-            
-            DefaultTableModel table = (DefaultTableModel)alunos.getModel();
+
+            DefaultTableModel table = (DefaultTableModel) alunos.getModel();
             table.setNumRows(0);
-            while(rs.next()){
-                Object[] l = {rs.getInt("matricula"),rs.getString("nome"),rs.getString("email"),rs.getString("telefone"),rs.getString("serie"),rs.getString("escola")};
+            while (rs.next()) {
+                Object[] l = {rs.getInt("matricula"), rs.getString("nome"), rs.getString("email"), rs.getString("telefone"), rs.getString("serie"), rs.getString("escola")};
                 table.addRow(l);
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(GerProf.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
+        } finally {
             conexao.closeConnection(con, stmt, rs);
         }
     }
-    
-    public void puxarAlunos(){
+
+    public void puxarAlunos() {
         Connection con = conexao.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        
+
         try {
             stmt = con.prepareStatement("SELECT * FROM alunos");
             rs = stmt.executeQuery();
-            
-            DefaultTableModel table = (DefaultTableModel)alunos.getModel();
+
+            DefaultTableModel table = (DefaultTableModel) alunos.getModel();
             table.setNumRows(0);
-            while(rs.next()){
-                Object[] l = {rs.getInt("matricula"),rs.getString("nome"),rs.getString("email"),rs.getString("telefone"),rs.getString("serie"),rs.getString("escola")};
+            while (rs.next()) {
+                Object[] l = {rs.getInt("matricula"), rs.getString("nome"), rs.getString("email"), rs.getString("telefone"), rs.getString("serie"), rs.getString("escola")};
                 table.addRow(l);
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(GerProf.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
+        } finally {
             conexao.closeConnection(con, stmt, rs);
         }
     }
-    
-    public void puxarBoletim(){
+
+    public void puxarBoletim() {
         Connection con = conexao.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        
+
         try {
             stmt = con.prepareStatement("SELECT * FROM boletim");
             rs = stmt.executeQuery();
-            
+
             DefaultTableModel table = (DefaultTableModel) boletim.getModel();
             table.setNumRows(0);
-            while(rs.next()){
-                Object[] l = {rs.getString("nome"), rs.getString("disciplina"), rs.getString("serie"), rs.getDouble("prova_parcial"), rs.getDouble("prova_bimestral"), rs.getDouble("media"), rs.getString("resultado")};
+            while (rs.next()) {
+                Object[] l = {rs.getInt("matricula"),rs.getString("nome"), rs.getString("disciplina"), rs.getString("serie"), rs.getFloat("prova_parcial"), rs.getFloat("prova_bimestral"), rs.getFloat("media"), rs.getString("resultado")};
                 table.addRow(l);
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(TelaProfessor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -117,42 +123,63 @@ public class TelaProfessor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        disciplina = new javax.swing.JComboBox<>();
+        serie = new javax.swing.JTextField();
+        nome = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        alunos = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         boletim = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        nome = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        serie = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        alunos = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        disciplina = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         gabaritoB = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         provaP = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         provaB = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
         media = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         resultado = new javax.swing.JTextField();
+        totEscores = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         cadastrarBoletim = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        gabaritoP = new javax.swing.JTextField();
+        opcaoProfessor = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        CalculoRapidoNotaBimestral = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        disciplina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Português", "Matemática", "Biologia", "Física", "Química", "Ed. Física", "Inglês", "Espanhol", "Geografia", "Filosofia", "Sociologia", "História" }));
+        getContentPane().add(disciplina, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 460, -1));
+
+        serie.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        serie.setBorder(null);
+        getContentPane().add(serie, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 400, 30));
+
+        nome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nome.setBorder(null);
+        getContentPane().add(nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 87, 400, 30));
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Abaixo estão listados todos os alunos cadastrados no sistema:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 560, -1));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/DadosA.png"))); // NOI18N
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 320));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setText("Pesquisar Aluno");
@@ -161,10 +188,40 @@ public class TelaProfessor extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(170, 240, 210, 60);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, 160, 50));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton2.setText("VOLTAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 70, 50));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        boletim.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Matrícula", "Nome", "Disciplina", "Serie", "Prova Parcial", "Prova Bimestral", "Média", "Resultado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        boletim.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(boletim);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 700, 270));
 
         alunos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -190,164 +247,57 @@ public class TelaProfessor extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(alunos);
 
-        boletim.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 440, 270));
 
-            },
-            new String [] {
-                "Nome", "Disciplina", "Serie", "Prova Parcial", "Prova Bimestral", "Média", "Resultado"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("(BOLETIM)");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, -310, -1, 40));
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        boletim.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(boletim);
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 1200, 310));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 310, 1460, 330);
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
-        jLabel1.setText("DADOS DO(A) ALUNO(A)  E DISCIPLINA");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("NOME:");
-
-        nome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("SÉRIE:");
-
-        serie.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setText("DISCIPLINA A SER CADASTRADO");
-
-        disciplina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Português", "Matemática", "Biologia", "Física", "Química", "Ed. Física", "Inglês", "Espanhol", "Geografia", "Filosofia", "Sociologia", "História" }));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(serie, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(disciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addContainerGap(30, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(24, 24, 24)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(serie, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(84, 84, 84))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(disciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 0, 730, 210);
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setText("AVISO: Selecione o(a) aluno(a) na tabela!!");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(220, 210, 400, 30);
-
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton2.setText("VOLTAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(10, 220, 140, 60);
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
-        jLabel6.setText("DADOS DE BOLETIM");
-
+        gabaritoB.setBorder(null);
         gabaritoB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gabaritoBActionPerformed(evt);
             }
         });
+        getContentPane().add(gabaritoB, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 92, 170, 30));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setText("GABARITO (B):");
+        provaP.setBorder(null);
+        getContentPane().add(provaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 132, 170, 30));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("PROVA PARCIAL:");
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel9.setText("PROVA BIMESTRAL:");
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel10.setText("MÉDIA:");
+        provaB.setBorder(null);
+        getContentPane().add(provaB, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 132, 170, 30));
 
         media.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel11.setText("RESULTADO:");
+        media.setBorder(null);
+        getContentPane().add(media, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 180, 140, 30));
 
         resultado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        resultado.setBorder(null);
+        resultado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resultadoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(resultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 178, 210, 30));
+
+        totEscores.setBorder(null);
+        totEscores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totEscoresActionPerformed(evt);
+            }
+        });
+        getContentPane().add(totEscores, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 92, 160, 30));
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Abaixo estão os cadastros de boletins dos alunos selecionados:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 290, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/DADOS.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 0, -1, 320));
 
         cadastrarBoletim.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         cadastrarBoletim.setText("CADASTRAR BOLETIM");
@@ -356,123 +306,91 @@ public class TelaProfessor extends javax.swing.JFrame {
                 cadastrarBoletimActionPerformed(evt);
             }
         });
+        getContentPane().add(cadastrarBoletim, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 241, 180, 60));
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 153, 153));
-        jLabel12.setText("AVISO: Para cada questão separe com uma vírgula");
+        opcaoProfessor.setBackground(new java.awt.Color(0, 0, 0));
+        opcaoProfessor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel13.setText("GABARITO (P):");
+        jMenu1.setText("INÍCIO");
 
-        gabaritoP.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/home.png"))); // NOI18N
+        jMenuItem1.setText("Voltar para o Login");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gabaritoPActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItem1);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cadastrarBoletim)
-                        .addGap(23, 23, 23))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(media, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(jLabel8)
-                                .addGap(83, 83, 83)
-                                .addComponent(jLabel9))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(provaP, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(provaB, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(gabaritoP, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel7)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(gabaritoB, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(gabaritoP, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(gabaritoB, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(provaP, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(provaB, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(media, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cadastrarBoletim, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
+        opcaoProfessor.add(jMenu1);
 
-        getContentPane().add(jPanel4);
-        jPanel4.setBounds(740, 0, 720, 312);
+        jMenu2.setText("| CÁLCULO DE MÉDIA");
 
-        setSize(new java.awt.Dimension(1485, 716));
+        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/gabarito.png"))); // NOI18N
+        jMenuItem2.setText("Cálculo de média do bimestre");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
+        opcaoProfessor.add(jMenu2);
+
+        jMenu3.setText("| EDITAR DADOS DE ALUNOS");
+
+        jMenuItem5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/nota.png"))); // NOI18N
+        jMenuItem5.setText("Editar Dados de Boletim e Média");
+        jMenu3.add(jMenuItem5);
+
+        opcaoProfessor.add(jMenu3);
+
+        jMenu4.setText("| CÁLCULO RÁPIDO PARA NOTA DE PROVA");
+
+        jMenuItem4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/IconeProvaParcial.png"))); // NOI18N
+        jMenuItem4.setText("Cálculo de Nota Parcial");
+        jMenu4.add(jMenuItem4);
+
+        CalculoRapidoNotaBimestral.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        CalculoRapidoNotaBimestral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/IconeProvaParcial.png"))); // NOI18N
+        CalculoRapidoNotaBimestral.setText("Cálculo de Nota Bimestral");
+        CalculoRapidoNotaBimestral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CalculoRapidoNotaBimestralActionPerformed(evt);
+            }
+        });
+        jMenu4.add(CalculoRapidoNotaBimestral);
+
+        opcaoProfessor.add(jMenu4);
+
+        jMenu5.setText("| CENTRO DE AJUDA E INFORMAÇÕES");
+
+        jMenuItem3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMenuItem3.setIcon(new javax.swing.ImageIcon("D:\\Programa POO\\ProfessorOnline\\src\\imgs\\duvida.png")); // NOI18N
+        jMenuItem3.setText("Central de Dúvidas e Informações do sistema");
+        jMenu5.add(jMenuItem3);
+
+        opcaoProfessor.add(jMenu5);
+
+        setJMenuBar(opcaoProfessor);
+
+        setSize(new java.awt.Dimension(1243, 677));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-try{
-        int id = Integer.parseInt(JOptionPane.showInputDialog("Digite a matricula do Aluno"));
-        puxar(id);
+        try {
+            int id = Integer.parseInt(JOptionPane.showInputDialog("Digite a matricula do Aluno"));
+            puxar(id);
 
-}catch(Exception i){
-    JOptionPane.showMessageDialog(this,"Digite uma matricula válida");
-}
+        } catch (Exception i) {
+            JOptionPane.showMessageDialog(this, "Digite uma matricula válida");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void alunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alunosMouseClicked
-       if(alunos.getSelectedRow() == -1){
-           JOptionPane.showMessageDialog(null,"");
-       }else{
-           nome.setText(alunos.getValueAt(alunos.getSelectedRow(), 1).toString());
-           serie.setText(alunos.getValueAt(alunos.getSelectedRow(), 4).toString());
-       }
-    }//GEN-LAST:event_alunosMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new Login().setVisible(true);
@@ -482,86 +400,172 @@ try{
     private void cadastrarBoletimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarBoletimActionPerformed
         boletimBEAN ab = new boletimBEAN();
         boletimDAO ad = new boletimDAO();
-        
-        //Parte do Gabarito Parcial
-        String text = gabaritoP.getText();
-        String[] texto = text.split(",");
-        
+
         //Parte do Gabarito Bimestral
         String textb = gabaritoB.getText();
         String[] textob = textb.split(",");
-        
+
         //Parte da Prova Parcial
         String text1 = provaP.getText();
         String[] texto1 = text1.split(",");
-        
+
         //Parte da Prova Bimestral
         String text2 = provaB.getText();
         String[] texto2 = text2.split(",");
-        
-        double n = 0;
-        double n2 = 0;
-        
-        if(gabaritoP.getText().equals("") || provaP.getText().equals("") || provaB.getText().equals("") || nome.getText().equals("") || serie.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Preencha todos os campos ou Verifique os dados do(a) aluno(a)","AVISO-LEGAL",JOptionPane.ERROR_MESSAGE);
-        }else{
-            if(texto1.length < texto.length || texto2.length < texto.length){
-                JOptionPane.showMessageDialog(null,"Número de questões Inválido","Aviso",JOptionPane.ERROR_MESSAGE);
-            }else{
-                double nm = Double.parseDouble(JOptionPane.showInputDialog("Quanto vale uma questão? "));
-                for(int i = 0; i < texto.length;i++){
-                    if(texto[i] == null ? texto1[i] == null : texto[i].equals(texto1[i])){
-                        n = n + nm;
+
+        //double n = 0; //Declarando valor de cada questão da Prova Parcial
+        double n2 = 0; //Declarando valor de cada questão da Prova Bimestral 
+        double totalEscores = Double.parseDouble(totEscores.getText());
+
+        boolean validar = false; // Vai validar pra ver se existe somente letras nos campos de preenchimento do gabarito
+
+        //Verifica se foi tudo preenchido
+        if (provaP.getText().equals("") || provaB.getText().equals("") || nome.getText().equals("") || serie.getText().equals("") || gabaritoB.getText().equals("") || totEscores.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos ou Verifique os dados do(a) aluno(a)", "AVISO-LEGAL", JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (texto2.length < textob.length) { // Verifica se os campos tem as mesmasquantidade de questões
+                JOptionPane.showMessageDialog(null, "Número de questões Inválido", "Aviso", JOptionPane.ERROR_MESSAGE);
+            } else {
+
+                try { //Verifica se o valor de cada questão está em formato numérico
+
+                    //double nmP = Double.parseDouble(JOptionPane.showInputDialog("Quanto vale uma questão da Prova Parcial? "));
+                    double nmB = Double.parseDouble(JOptionPane.showInputDialog("Quanto vale uma questão da Prova Bimestral? "));
+
+                    //System.out.println("Somente números");
+                    for (int i = 0; i < textob.length; i++) { //Verifica se os campos contém somente letras e valida ou não
+                        if ((textob[i].matches("[a-z]*") && texto2[i].matches("[a-z]*")) || (textob[i].matches("[A-Z]*") && texto2[i].matches("[A-Z]*"))) {
+                            validar = true;
+                        } else {
+                            validar = false;
+                            break;
+                        }
                     }
 
-                    if(textob[i] == null ? texto2[i] == null : textob[i].equals(texto2[i])){
-                        n2 = n2 + nm;
-                    }
-                }
-                
-                JOptionPane.showMessageDialog(null,"Média calculada com sucesso!!");
-                
-                double mediaFinal = (n + n2) / 2;
-                media.setText(String.valueOf(mediaFinal));
-                
-                if(mediaFinal >= 6){
-                    resultado.setText("APROVADO");
-                }else if(mediaFinal < 6 && mediaFinal >= 5){
-                    resultado.setText("RECUPERAÇÃO");
-                }else if(mediaFinal < 5){
-                    resultado.setText("REPROVADO");
-                }
-                
-                 ab.setNome(nome.getText());
-                 ab.setDisciplina(String.valueOf(disciplina.getSelectedItem()));
-                 ab.setSerie(serie.getText());
-                 ab.setProvaPar(n);
-                 ab.setProvaBim(n2);
-                 ab.setMedia(mediaFinal);
-                 ab.setResultado(resultado.getText());
-                 
-                 ad.salvar(ab);
-                 
+                    if (validar) { //Caso os campos tenham somente texto
+
+                        //System.out.println("Deu certo");
+                        for (int i = 0; i < texto2.length; i++) { //Irá fazer o cálculo de notas
+
+                            if (textob[i] == null ? texto2[i] == null : textob[i].equals(texto2[i])) {
+                                n2 = n2 + nmB;
+                            }
+                        }
+
+                        double aux = 0;
+                        double toEscores = 0;
+                        int totQuest = 0;
+
+                        for (int i = 0; i < texto1.length; i++) {
+                            aux = Double.parseDouble(texto1[i]);
+                            toEscores = aux + toEscores;
+                            totQuest++;
+                        }
+                        
+                        DecimalFormat formato = new DecimalFormat("0.0");
+                        
+                        
+                        
+                        double nota = ((toEscores * 100) / Double.parseDouble(totEscores.getText())) / 10;
+
+                        double mediaFinal = (nota + n2) / 2; //Irá fazer o cálculo de média final
+                        
+                        //System.out.println(mediaFinal);
+                        
+                        if (toEscores <= totalEscores) {
+                            JOptionPane.showMessageDialog(null, "Nota calculada com sucesso!!");
+                            
+                            media.setText(String.valueOf(formato.format(mediaFinal)).replace(',','.'));
+
+                            if (mediaFinal >= 6) { //Inserirá no banco o resultado de média
+                                resultado.setText("APROVADO");
+                            } else if (mediaFinal < 6 && mediaFinal >= 5) {
+                                resultado.setText("RECUPERAÇÃO");
+                            } else if (mediaFinal < 5) {
+                                resultado.setText("REPROVADO");
+                            }
+                            
+                            DefaultTableModel tableAlunos = (DefaultTableModel) alunos.getModel();
+                            
+                            float notaP = Float.parseFloat(String.valueOf(String.format("%.2f",nota)).replace(',','.'));
+                            
+                            
+                            //Inserirá no banco todas as informações caso tudo antes satisfazer o programa
+                            ab.setNome(nome.getText());
+                            ab.setDisciplina(String.valueOf(disciplina.getSelectedItem()));
+                            ab.setSerie(serie.getText());
+                            System.out.println(notaP);
+                            ab.setProvaBim(Float.parseFloat(String.valueOf(formato.format(n2)).replace(',', '.')));
+                            ab.setMedia(Float.parseFloat(String.valueOf(formato.format(mediaFinal)).replace(',', '.')));
+                            ab.setResultado(resultado.getText());
+                            ab.setMatricula(Integer.parseInt(alunos.getValueAt(alunos.getSelectedRow(), 0).toString()));
+
+                            ad.salvar(ab);
+
 //                 Object[] l = {rs.getString("nome"), rs.getString("disciplina"), rs.getString("serie"), rs.getDouble("prova_parcial"), rs.getDouble("prova_bimestral"), rs.getDouble("media"), rs.getString("resultado")};
-                 
-                 DefaultTableModel table = (DefaultTableModel) boletim.getModel();
-                 Object[] l = {nome.getText(),  String.valueOf(disciplina.getSelectedItem()), serie.getText(), n, n2, media.getText(), resultado.getText()};
-                 table.addRow(l);
+                            DefaultTableModel table = (DefaultTableModel) boletim.getModel();
+
+                            Object[] l = {String.valueOf(ab.getMatricula()),nome.getText(), String.valueOf(disciplina.getSelectedItem()), serie.getText(), notaP, Float.parseFloat(String.valueOf(formato.format(n2)).replace(',', '.')), media.getText(), resultado.getText()};
+                            table.addRow(l); //Inserir valores na tabela
+
+                        }else{
+                            JOptionPane.showMessageDialog(null,"A SOMA DOS ESCORES NÃO PODE ULTRAPASSAR O VALOR DOS ESCORES TOTAIS");
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "O MODO DE CORREÇÃO DE GABARIO SÓ É ACEITO [A - Z] ou [a - z]", "AVISO-LEGAL", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } catch (NumberFormatException ex) { //Caso seja digitado alguma letra, mostrará a mensagem abaixo
+                    JOptionPane.showMessageDialog(null, "É NECESSÁRIO INFORMAR O VALOR DE UMA QUESTÃO NO FORMATO NUMÉRICO!", "AVISO-LEGAL", JOptionPane.ERROR_MESSAGE);
+                }
+
             }
         }
-        
+
+        /*if(!(gabaritoP.getText().equals("") && provaP.getText().equals(""))){
+            CalcularProvaParcial();
+        }*/
+
     }//GEN-LAST:event_cadastrarBoletimActionPerformed
 
     private void gabaritoBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gabaritoBActionPerformed
-        
+
     }//GEN-LAST:event_gabaritoBActionPerformed
 
-    private void gabaritoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gabaritoPActionPerformed
+    private void alunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alunosMouseClicked
+        if (alunos.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "");
+        } else {
+            nome.setText(alunos.getValueAt(alunos.getSelectedRow(), 1).toString());
+            serie.setText(alunos.getValueAt(alunos.getSelectedRow(), 4).toString());
+        }
+    }//GEN-LAST:event_alunosMouseClicked
+
+    private void resultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_gabaritoPActionPerformed
-    
-    
-      
+    }//GEN-LAST:event_resultadoActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        new Login().setVisible(true);
+
+        dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        new TelaProfessor().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void CalculoRapidoNotaBimestralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalculoRapidoNotaBimestralActionPerformed
+        //new CalculoNotaBimestral().setVisible(true);
+        //dispose();
+    }//GEN-LAST:event_CalculoRapidoNotaBimestralActionPerformed
+
+    private void totEscoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totEscoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totEscoresActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -598,37 +602,39 @@ try{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem CalculoRapidoNotaBimestral;
     private javax.swing.JTable alunos;
     private javax.swing.JTable boletim;
     private javax.swing.JButton cadastrarBoletim;
     private javax.swing.JComboBox<String> disciplina;
     private javax.swing.JTextField gabaritoB;
-    private javax.swing.JTextField gabaritoP;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField media;
     private javax.swing.JTextField nome;
+    private javax.swing.JMenuBar opcaoProfessor;
     private javax.swing.JTextField provaB;
     private javax.swing.JTextField provaP;
     private javax.swing.JTextField resultado;
     private javax.swing.JTextField serie;
+    private javax.swing.JTextField totEscores;
     // End of variables declaration//GEN-END:variables
 }
